@@ -10,8 +10,6 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  // const accessToken = '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'
-  // const accessToken = process.env.ACCESS_TOKEN
   const query = `
     query {
       user(login: "dugramen") {

@@ -28,6 +28,7 @@ export default function Project(props) {
         >
             <img
                 src={props.src}
+                alt=''
             />
         </a>
 

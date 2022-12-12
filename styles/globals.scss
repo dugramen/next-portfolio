@@ -256,12 +256,6 @@ button {
                 color: black;
                 font-weight: bold;
               }
-              // .skill-icon {
-                  //     filter: brightness(1);
-                  // }
-              .overlay {
-                  // clip-path: circle(100% at 0px 0px);
-              }
           }
       }
   }
@@ -384,15 +378,6 @@ button {
           &:hover {
               // background-color: hsla(0, 0%, 0%, .1);
               cursor: pointer;
-              // overflow: visible;
-              .img-container {
-                // overflow: visible;
-                // clip-path: inset(calc(0% - calc($project-size / 2.0)));
-
-                // clip-path: inset(0px);
-                // width: max-content;
-                // z-index: 10;
-              }
               
               img {
                   transform: scale(.8);

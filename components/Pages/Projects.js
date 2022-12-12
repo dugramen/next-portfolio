@@ -1,3 +1,4 @@
+import { title } from "process";
 import React from "react";
 import Project from "./Project/Project";
 
@@ -6,6 +7,7 @@ export default function Projects(props) {
     const handleIsMobile = () => {
         setIsMobile(window.innerWidth <= 768)
     }
+    
     React.useEffect(() => {
         handleIsMobile()
         window.addEventListener('resize', handleIsMobile)
@@ -13,12 +15,17 @@ export default function Projects(props) {
             window.removeEventListener('resize', handleIsMobile)
         }
     }, [])
-
+    console.log(props.repos)
+    
     return (
     <div className="Page ProjectsPage" id="ProjectsPage">
         <h1>Projects</h1>
+        
         <div className="projects-container">
-            {props.repos?.map(repo => (
+            {props.repos?.
+            filter((r) => r.name !== 'next-portfolio').
+            // reverse().
+            map(repo => (
                 <Project
                     src={repo.openGraphImageUrl}
                     title={repo.name}

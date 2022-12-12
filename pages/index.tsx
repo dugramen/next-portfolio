@@ -3,7 +3,7 @@ import App from '../components/App'
 
 export default function Home(props) {
   const repos = props?.repos?.data?.user?.repositories?.nodes
-  
+
   return <App
     repos={repos}
   />

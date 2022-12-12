@@ -19,7 +19,7 @@ export default function About(props) {
         <div style={{
             display: 'inline',
         }}
-        > I'm
+        > {"I'm"}
             <span style={{
                 // color: 'rebeccapurple',
                 fontWeight: 'bold',

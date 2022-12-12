@@ -25,21 +25,19 @@ a {
 //   }
 // }
 
-
-
 :root {
   --bg-color: white;
   --text-color: black;
   --nav-height: 80px;
   --site-offset-w: 0px;
-  --navbar-color: hsla(0, 0%, 95%, 1.0);
-  --button-color: hsla(0, 0%, 95%, 1.0)
+  --navbar-color: hsla(0, 0%, 95%, 1);
+  --button-color: hsla(0, 0%, 95%, 1);
   // --button-color: black;
 }
 
 @media only screen and (min-width: 600px) {
   :root {
-      --site-offset-w: 10vw;
+    --site-offset-w: 10vw;
   }
 }
 
@@ -49,14 +47,15 @@ a {
 //   }
 // }
 
-html, body {
+html,
+body {
   box-sizing: border-box;
 }
 
 .Pages-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 button {
@@ -82,11 +81,11 @@ button {
   width: 100%;
   background-color: var(--navbar-color);
   box-shadow: 0px 0px 32px var(--navbar-color);
-  transition: .5s;
-  
+  transition: 0.5s;
+
   &.top {
-      background-color: white;
-      box-shadow: 0px 0px 0px transparent;
+    background-color: white;
+    box-shadow: 0px 0px 0px transparent;
   }
 }
 
@@ -101,31 +100,30 @@ button {
   padding: 0 var(--site-offset-w);
   margin: 0;
 
-
-  .Nav-item, .name {
-      height: 100%;
-      color: var(--text-color);
-      margin: 0;
-      padding: 0px 20px;
-      display: flex;
-      align-items: center;
+  .Nav-item,
+  .name {
+    height: 100%;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
   }
   .name {
-      margin-right: auto;
-      font-weight: bold;
-      font-size: large;
+    margin-right: auto;
+    font-weight: bold;
+    font-size: large;
   }
   .Nav-item {
-      padding: 0px 20px;
-      cursor: pointer;
-      transition: .3s;
-      background-color: transparent;
+    padding: 0px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: transparent;
   }
   .Nav-item:hover {
-      background-color: hsla(0, 0%, 0%, .15);
+    background-color: hsla(0, 0%, 0%, 0.15);
   }
 }
-
 
 .Page {
   min-height: calc(100vh - var(--nav-height));
@@ -134,20 +132,20 @@ button {
   align-items: center;
 
   form {
-      width: min-content;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
   .form-item {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .submit-button {
-      align-self: center;
+    align-self: center;
   }
 }
 
@@ -167,7 +165,7 @@ button {
       padding: 8px 32px;
       background-color: transparent;
       color: black;
-      transition: .3s;
+      transition: 0.3s;
 
       &:hover {
         background-color: black;
@@ -183,71 +181,71 @@ button {
   align-items: center;
 
   .skill-container {
-      $icon-size: 70px;
-      $gap: 40px;
+    $icon-size: 70px;
+    $gap: 40px;
 
-      height: 100%;
-      align-self: center;
+    height: 100%;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: calc(5 * ($icon-size + $gap));
+    justify-content: center;
+    gap: $gap;
+
+    .skill {
+      $width: 15px;
+      // margin: 30px 20px;
+      // flex: calc(33.33% - $width);
+      margin: 8px;
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      max-width: calc(5 * ($icon-size + $gap));
-      justify-content: center;
-      gap: $gap;
-      
-      .skill {
-          $width: 15px;
-          // margin: 30px 20px;
-          // flex: calc(33.33% - $width);
-          margin: 8px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          // max-width: 33.33%;
-          // flex-basis: 30%;
-          // margin: 4px 0px;
+      flex-direction: column;
+      align-items: center;
+      // max-width: 33.33%;
+      // flex-basis: 30%;
+      // margin: 4px 0px;
 
-          p {
-            margin: 0px;
-            font-size: .8rem;
-            color: hsl(0, 0%, 50%);
-            transition: .3s;
-          }
-  
-          .skill-icon {
-              position: relative;
-              width: $icon-size;
-              height: $icon-size;
-
-              // transition: .25s;
-              
-              .underlay {
-                  filter: brightness(0);
-                  width: 100%;
-                  height: 100%;
-                }
-                
-                .overlay {
-                  filter: brightness(1);
-                  position: absolute;
-                  width: 100%;
-                  height: 100%;
-                  left: 0;
-                  right: 0;
-                  top: 0;
-                  bottom: 0;
-                  pointer-events: none;
-              }
-          }
-          
-          &:hover {
-            cursor: pointer;
-              p {
-                color: black;
-                font-weight: bold;
-              }
-          }
+      p {
+        margin: 0px;
+        font-size: 0.8rem;
+        color: hsl(0, 0%, 50%);
+        transition: 0.3s;
       }
+
+      .skill-icon {
+        position: relative;
+        width: $icon-size;
+        height: $icon-size;
+
+        // transition: .25s;
+
+        .underlay {
+          filter: brightness(0);
+          width: 100%;
+          height: 100%;
+        }
+
+        .overlay {
+          filter: brightness(1);
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          pointer-events: none;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        p {
+          color: black;
+          font-weight: bold;
+        }
+      }
+    }
   }
 }
 
@@ -256,144 +254,144 @@ button {
   // background-color: $debug-bg;
 
   .projects-container {
-      // background-color: $debug-bg;
+    // background-color: $debug-bg;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    gap: 16px;
+
+    $card-color: white;
+
+    .Project {
+      $project-size: 300px;
+      background-color: $card-color;
+      //   background-color: $debug-bg;
+
+      border-radius: 12px;
+      //   border: 4px gray solid;
+      $padding: 12px;
+      $padding: 0px;
+      //   padding: $padding;
+
       display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      align-items: stretch;
-      justify-content: center;
-      gap: 16px;
-      
-      $card-color: white;
-      
-      .Project {
-          $project-size: 300px;
-          background-color: $card-color;
-        //   background-color: $debug-bg;
-          
-            border-radius: 12px;
-        //   border: 4px gray solid;
-          $padding: 12px;
-          $padding: 0px;
-        //   padding: $padding;
+      flex-direction: column;
+      width: calc($project-size + $padding * 2);
+      overflow: hidden;
+      // overflow-y: hidden;
+      // overflow-x: visible;
+      position: relative;
+      box-shadow: 0px 0px 10px lightgray;
+      // border: 1px solid black;
 
-          display: flex;
-          flex-direction: column;
-          width: calc($project-size + $padding * 2);
-          overflow: hidden;
-          // overflow-y: hidden;
-          // overflow-x: visible;
+      .img-container {
+        width: $project-size;
+        height: calc($project-size * 0.7);
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        //   border-radius: 8px;
+        // align-items: flex-start;
+        // clip-path: inset(calc(50% - calc($project-size / 2.0)));
+        // transition: .3s;
+        z-index: 1;
+
+        img {
           position: relative;
-          box-shadow: 0px 0px 10px lightgray;
-          // border: 1px solid black;
-
-          .img-container {
-              width: $project-size;
-              height: calc($project-size * .7);
-              overflow: hidden;
-              display: flex;
-              justify-content: center;
-            //   border-radius: 8px;
-              // align-items: flex-start;
-              // clip-path: inset(calc(50% - calc($project-size / 2.0)));
-              // transition: .3s;
-              z-index: 1;
-
-              img {
-                  position: relative;
-                  z-index: -1;
-                  max-height: 100%;
-                  transform-origin: top;
-                  transition: transform .3s;
-              }
-          }
-
-          .text-container {
-              // background-color: hsla(0, 0%, 100%, .5);
-              // background-color: var(--bg-color);
-              background-color: $card-color;
-        //   background-color: $debug-bg;
-              padding: 8px 20px;
-              transition: .3s;
-              margin-bottom: 0;
-          }
-
-          .button-slider {
-              $margin-bottom: 20px;
-
-              display: flex;
-              flex-direction: row;
-              width: 100%;
-              align-self: stretch;
-              align-items: center;
-              justify-content: center;
-              margin-bottom: $margin-bottom;
-              position: absolute;
-              bottom: 0;
-              gap: 4px;
-
-              transform: translateY(calc(100% + $margin-bottom));
-              transition: .3s;
-              
-
-              button {
-                  width: 100%;
-                  padding: 8px 32px;
-                  border-width: 2px;
-                  border-style: solid;
-                  border-color: var(--button-color);
-              }
-
-              .github {
-                  button {
-                      box-sizing: border-box;
-                      border-color: black;
-                      border-style: solid;
-                      transition: .3s;
-                      border-width: 2px;
-                      // box-shadow: 0px 0px 4px black;
-                      
-                      color: black;
-                      background-color: transparent;
-  
-                      &:hover {
-                          color: white;
-                          background-color: black;
-                      }
-                  }
-              }
-          }
-
-          
-          &:hover {
-              // background-color: hsla(0, 0%, 0%, .1);
-              cursor: pointer;
-              
-              img {
-                  transform: scale(.8);
-              }
-              .text-container {
-                  transform: translateY(-60px);
-              }
-              .button-slider {
-                  transform: translateY(0);
-              }
-          }
+          z-index: -1;
+          max-height: 100%;
+          transform-origin: top;
+          transition: transform 0.3s;
+        }
       }
+
+      .text-container {
+        // background-color: hsla(0, 0%, 100%, .5);
+        // background-color: var(--bg-color);
+        background-color: $card-color;
+        //   background-color: $debug-bg;
+        padding: 8px 20px;
+        transition: 0.3s;
+        margin-bottom: 0;
+      }
+
+      .button-slider {
+        $margin-bottom: 20px;
+
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-self: stretch;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: $margin-bottom;
+        position: absolute;
+        bottom: 0;
+        gap: 4px;
+
+        transform: translateY(calc(100% + $margin-bottom));
+        transition: 0.3s;
+
+        button {
+          width: 100%;
+          padding: 8px 32px;
+          border-width: 2px;
+          border-style: solid;
+          border-color: var(--button-color);
+        }
+
+        .github {
+          button {
+            box-sizing: border-box;
+            border-color: black;
+            border-style: solid;
+            transition: 0.3s;
+            border-width: 2px;
+            // box-shadow: 0px 0px 4px black;
+
+            color: black;
+            background-color: transparent;
+
+            &:hover {
+              color: white;
+              background-color: black;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        // background-color: hsla(0, 0%, 0%, .1);
+        cursor: pointer;
+
+        img {
+          transform: scale(0.8);
+        }
+        .text-container {
+          transform: translateY(-60px);
+        }
+        .button-slider {
+          transform: translateY(0);
+        }
+      }
+    }
   }
 }
 
-input[type=text], input[type=email], textarea {
-    outline: none;
-    background: var(--navbar-color);
-    border: 0px solid black;
-    border-radius: 12px;
-    padding: 10px 16px;
+input[type="text"],
+input[type="email"],
+textarea {
+  outline: none;
+  background: var(--navbar-color);
+  border: 0px solid black;
+  border-radius: 12px;
+  padding: 10px 16px;
 }
 
 textarea {
-    border-bottom-right-radius: 0;
-    padding: 16px;
+  border-bottom-right-radius: 0;
+  padding: 16px;
 }
 
 h1 {

@@ -3,13 +3,14 @@ import Project from "./Project/Project";
 
 export default function Projects(props) {
     const [isMobile, setIsMobile] = React.useState(false)
-    const checkIsMobile = () => {
+    const handleIsMobile = () => {
         setIsMobile(window.innerWidth <= 768)
     }
     React.useEffect(() => {
-        window.addEventListener('resize', checkIsMobile)
+        handleIsMobile()
+        window.addEventListener('resize', handleIsMobile)
         return () => {
-            window.removeEventListener('resize', checkIsMobile)
+            window.removeEventListener('resize', handleIsMobile)
         }
     }, [])
 

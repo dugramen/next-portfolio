@@ -17,12 +17,12 @@ export default function Project(props) {
     return (
     <div 
         className="Project"
-        href={!props.isMobile && props.homepageUrl}
+        // href={!props.isMobile ? props.homepageUrl : 'false'}
     >
 
         <a 
             className="img-container"
-            href={!props.isMobile && repo.homepageUrl}
+            href={!props.isMobile ? repo.homepageUrl : undefined}
             target='_blank'
             rel="noreferrer"
         >
@@ -39,7 +39,7 @@ export default function Project(props) {
         </a> */}
         <a 
             className="text-container"
-            href={!props.isMobile ? repo.homepageUrl : "false"}
+            href={!props.isMobile ? repo.homepageUrl : undefined}
             target='_blank'
             rel="noreferrer"
             // onClick={() => isMobile && window.open()}

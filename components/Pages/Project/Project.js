@@ -24,6 +24,7 @@ export default function Project(props) {
             className="img-container"
             href={!props.isMobile && repo.homepageUrl}
             target='_blank'
+            rel="noreferrer"
         >
             <img
                 src={props.src}
@@ -39,6 +40,7 @@ export default function Project(props) {
             className="text-container"
             href={!props.isMobile ? repo.homepageUrl : "false"}
             target='_blank'
+            rel="noreferrer"
             // onClick={() => isMobile && window.open()}
         >  
             <h2>{props.title?.replaceAll('-', ' ')
@@ -54,6 +56,7 @@ export default function Project(props) {
                 className="github"
                 href={repo.url}
                 target='_blank'
+                rel="noreferrer"
             >
                 <button>
                     GitHub
@@ -65,6 +68,7 @@ export default function Project(props) {
                 className="website-link"
                 href={repo.homepageUrl}
                 target='_blank'
+                rel="noreferrer"
             >
                 <button>
                     Try out

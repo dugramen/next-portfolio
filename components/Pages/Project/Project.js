@@ -5,7 +5,6 @@ export default function Project(props) {
     const repo = props.repo
     const [focused, setFocused] = React.useState(false)
     const [isTouchDevice, setIsTouchDevice] = React.useState(false)
-    // let isTouchDevice = false
 
     React.useEffect(() => {
         setIsTouchDevice( ( 'ontouchstart' in window )
@@ -17,7 +16,6 @@ export default function Project(props) {
     return (
     <div 
         className="Project"
-        // href={!props.isMobile ? props.homepageUrl : 'false'}
     >
 
         <a 
@@ -32,17 +30,11 @@ export default function Project(props) {
             />
         </a>
 
-        {/* <a
-            href={!props.isMobile && props.homepageUrl}
-            target='_blank'
-        >
-        </a> */}
         <a 
             className="text-container"
             href={!props.isMobile ? repo.homepageUrl : undefined}
             target='_blank'
             rel="noreferrer"
-            // onClick={() => isMobile && window.open()}
         >  
             <h2>{props.title?.replaceAll('-', ' ')
                 .split(' ')

@@ -1,4 +1,3 @@
-// import './App.scss';
 import React from 'react';
 import About from './Pages/About';
 import Contact from './Pages/Contact';
@@ -8,7 +7,6 @@ import Skills from './Pages/Skills';
 export default function App({repos}) {
   const [atTop, setAtTop] = React.useState(true)
   const pages = [
-    // "About",
     "Skills",
     "Projects",
     "Contact",

@@ -1,5 +1,4 @@
 import React from "react";
-// import {ReactComponent as GodotIcon} from './SkillsIcons/godot.svg';
 import Image from "next/image";
 
 function injectStyle(style) {
@@ -19,16 +18,6 @@ function Icon({name, path}) {
 
     React.useEffect(() => {
         requestAnimationFrame(() => setClip(`circle(${name===mousePos[2]? 150: 0}% at ${mousePos[0]}px ${mousePos[1]}px)`))
-        // injectStyle(`
-        //     @keyframes skill-icon-frames-${name} {
-        //         from {
-        //             circle(${name===mousePos[2]? 0: 150}% at ${mousePos[0]}px ${mousePos[1]}px)
-        //         }
-        //         to {
-        //             circle(${name===mousePos[2]? 150: 0}% at ${mousePos[0]}px ${mousePos[1]}px)
-        //         }
-        //     }
-        // `)
     }, [mousePos[0], mousePos[1], mousePos[3]])
 
     return (
@@ -36,7 +25,6 @@ function Icon({name, path}) {
         <div className="skill-icon">
             <Image
                 className="underlay"
-                // src={require('' + skills[v])}
                 src={path}
                 width={80}
                 height={80}
@@ -60,7 +48,6 @@ function Icon({name, path}) {
                 alt='img'
                 style={{
                     transition: clip === '' ? `0s` : `.5s ease-out`,
-                    // clipPath: `circle(${name===mousePos[2]? 150: 0}% at ${mousePos[0]}px ${mousePos[1]}px)`,
                     clipPath: clip === ''
                         ? `circle(0% at ${mousePos[0]}px ${mousePos[1]}px)`
                         : clip,

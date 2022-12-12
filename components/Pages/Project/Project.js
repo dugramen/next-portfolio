@@ -37,7 +37,7 @@ export default function Project(props) {
         </a> */}
         <a 
             className="text-container"
-            href={!props.isMobile && repo.homepageUrl}
+            href={!props.isMobile ? repo.homepageUrl : "false"}
             target='_blank'
             // onClick={() => isMobile && window.open()}
         >  

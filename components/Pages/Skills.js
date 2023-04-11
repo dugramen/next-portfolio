@@ -21,7 +21,18 @@ function Icon({name, path}) {
     }, [mousePos[0], mousePos[1], mousePos[3]])
 
     return (
-    <div className="skill">
+    <div 
+        className="skill"
+        onMouseEnter={(e) => {
+            const {top, left} = e.currentTarget.getBoundingClientRect()
+            setMousePos([e.clientX - left, e.clientY - top, name])
+            setClip(``)
+        }}
+        onMouseLeave={(e) => {
+            const {top, left} = e.currentTarget.getBoundingClientRect()
+            setMousePos([e.clientX - left, e.clientY - top, null])
+        }}
+    >
         <div className="skill-icon">
             <Image
                 className="underlay"
@@ -29,15 +40,7 @@ function Icon({name, path}) {
                 width={80}
                 height={80}
                 alt='img'
-                onMouseEnter={(e) => {
-                    const {top, left} = e.currentTarget.getBoundingClientRect()
-                    setMousePos([e.clientX - left, e.clientY - top, name])
-                    setClip(``)
-                }}
-                onMouseLeave={(e) => {
-                    const {top, left} = e.currentTarget.getBoundingClientRect()
-                    setMousePos([e.clientX - left, e.clientY - top, null])
-                }}
+                
             />
             
             <Image
@@ -47,7 +50,7 @@ function Icon({name, path}) {
                 height={80}
                 alt='img'
                 style={{
-                    transition: clip === '' ? `0s` : `.5s ease-out`,
+                    transition: clip === '' ? `0s` : `.3s ease-out`,
                     clipPath: clip === ''
                         ? `circle(0% at ${mousePos[0]}px ${mousePos[1]}px)`
                         : clip,

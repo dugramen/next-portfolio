@@ -9,7 +9,7 @@ export default function About(props) {
         alignItems: 'center',
         marginTop: '25vh',
     }}>
-        <div style={{
+        <div className="HomePage-hello" style={{
             fontSize: '1rem'
         }}
         >Hello </div>

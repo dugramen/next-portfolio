@@ -52,10 +52,37 @@ body {
   box-sizing: border-box;
 }
 
+
+input[type="text"],
+input[type="email"],
+textarea {
+  outline: none;
+  background: var(--navbar-color);
+  border: 0px solid black;
+  border-radius: 12px;
+  padding: 10px 16px;
+}
+
+textarea {
+  border-bottom-right-radius: 0;
+  padding: 16px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  // font-weight: normal;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  color: hsl(0, 0%, 60%);
+}
+
+
+
 .Pages-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding: 0px var(--site-offset-w);
 }
 
 button {
@@ -130,23 +157,6 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  form {
-    width: min-content;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .form-item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .submit-button {
-    align-self: center;
-  }
 }
 
 .AboutPage {
@@ -209,7 +219,9 @@ button {
         margin: 0px;
         font-size: 0.8rem;
         color: hsl(0, 0%, 50%);
-        transition: 0.3s;
+        transition-property: color;
+        transition-duration: .3s;
+        // transition: color 0.3s;
       }
 
       .skill-icon {
@@ -251,6 +263,7 @@ button {
 
 .ProjectsPage {
   $debug-bg: hsl(0, 0%, 95%);
+  margin: 0px calc(var(--site-offset-w) * -1);
   // background-color: $debug-bg;
 
   .projects-container {
@@ -379,25 +392,69 @@ button {
   }
 }
 
-input[type="text"],
-input[type="email"],
-textarea {
-  outline: none;
-  background: var(--navbar-color);
-  border: 0px solid black;
-  border-radius: 12px;
-  padding: 10px 16px;
-}
+.ContactPage {
+  form {
+    // width: min-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
-textarea {
-  border-bottom-right-radius: 0;
-  padding: 16px;
-}
+    // input[type=text], input[type=email] {
+    //   align-self: flex-start;
+    // }
 
-h1 {
-  font-size: 1.5rem;
-  // font-weight: normal;
-  margin-bottom: 3rem;
-  margin-top: 3rem;
-  color: hsl(0, 0%, 60%);
+    .form-item {
+      display: flex;
+      flex-direction: column;
+      // align-items: flex-start;
+    }
+  
+    .submit-button {
+      align-self: center;
+    }
+
+    textarea {
+      min-height: 150px;
+    }
+  }
+
+
+  .content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    justify-items: stretch;
+  }
+  .contact-info {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 8px;
+    align-items: center;
+    width: min-content;
+    height: min-content;
+    justify-self: center;
+
+    // display: flex;
+    // flex-direction: column;
+    // .contact-entry {
+    //   display: flex;
+    //   flex-direction: row;
+    //   gap: 8px;
+    //   align-items: center;
+    // }
+  }
+
+  .links {
+    display: flex;
+    gap: 8px;
+    .icon {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: stretch;
+      align-items: stretch;
+    }
+  }
 }

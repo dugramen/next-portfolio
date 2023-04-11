@@ -15,7 +15,7 @@ export default function Projects(props) {
             window.removeEventListener('resize', handleIsMobile)
         }
     }, [])
-    console.log(props.repos)
+    // console.log(props.repos)
     
     return (
     <div className="Page ProjectsPage" id="ProjectsPage">

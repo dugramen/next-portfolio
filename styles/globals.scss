@@ -32,8 +32,13 @@ a {
   --site-offset-w: 0px;
   --navbar-color: hsla(0, 0%, 95%, 1);
   --button-color: hsla(0, 0%, 95%, 1);
+  // --solid-color: desaturate(red, 10);
   // --button-color: black;
 }
+
+$solid-color: darken(red, 5);
+
+
 
 @media only screen and (min-width: 600px) {
   :root {
@@ -121,7 +126,6 @@ button {
   position: fixed;
   inset: 0;
   z-index: 15;
-  // background: linear-gradient(red, orange 25%, transparent);
   background: linear-gradient(red, orange);
   transition: .3s;
   // height: var(--nav-height);
@@ -137,12 +141,12 @@ button {
 }
 
 .gradient-button {
-  background-image: linear-gradient(to right, red, orange, red);
+  background-image: linear-gradient(to right, $solid-color, orange, $solid-color);
   color: white;
   align-self: center;
   background-size: 200% auto;
   background-position: left;
-  transition: .5s;
+  transition: .3s;
   &:hover {
     background-position: right;
     // color: black;
@@ -213,11 +217,11 @@ button {
       width: 0;
       height: 3px;
       content: '';
-      background: linear-gradient(red, orange);
+      background: linear-gradient($solid-color, orange);
       transition: .3s;
     }
     &:hover {
-      color: red;
+      color: $solid-color;
       &::before {
         width: 80%;
       }
@@ -227,7 +231,7 @@ button {
     margin-right: auto;
     font-weight: bold;
     font-size: large;
-    color: red;
+    color: $solid-color;
   }
 }
 
@@ -260,7 +264,6 @@ button {
   // inset: 0;
   height: 100vh;
   z-index: 15;
-  // background: linear-gradient(red, orange);
   transition: .3s;
   opacity: 0;
 
@@ -314,7 +317,7 @@ button {
 
       &:hover {
         background-color: white;
-        color: red;
+        color: $solid-color;
       }
     }
   }
@@ -461,7 +464,7 @@ button {
     flex-direction: row;
     align-items: stretch;
     justify-content: center;
-    gap: 20px;
+    gap: 24px;
 
     $card-color: var(--navbar-color);
 
@@ -508,22 +511,36 @@ button {
           transition: transform 0.3s;
         }
       }
+      
+      .chips-container {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        .chip {
+          // margin-top: -15px;
+          // margin-bottom: -15px;
+          font-size: .75rem;
+          // font-weight: bold;
+          color: black;
+          // color: orangered;
+          border-radius: 8px;
+          padding: 4px 14px;
+
+          color: white;
+          background: $solid-color;
+          & ::before {
+            content: '•';
+          }
+        }
+      }
 
       .text-container {
-        // background-color: hsla(0, 0%, 100%, .5);
-        // background-color: var(--bg-color);
         background-color: $card-color;
-        //   background-color: $debug-bg;
         padding: 8px 20px;
         transition: 0.3s;
         margin-bottom: 0;
-        // color: darken($color: red, $amount: 10);
+
       }
-      // &:hover {
-      //   .text-container h2 {
-      //     color: red;
-      //   }
-      // }
 
       .button-slider {
         $margin-bottom: 20px;

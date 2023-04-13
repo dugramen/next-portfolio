@@ -23,7 +23,7 @@ export default function App({repos}) {
 
     setAtTop(old => {
       if (containerRef.current) {
-        return containerRef.current.scrollTop <= window.innerHeight/2.0
+        return containerRef.current.scrollTop <= window.innerHeight*.5
       } else {return old}
     })
 

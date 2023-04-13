@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+// import { GitHubDataContext } from "../../../pages";
 
 export default function Project(props) {
     const repo = props.repo
@@ -30,6 +31,7 @@ export default function Project(props) {
             />
         </a>
 
+
         <a 
             className="text-container"
             href={!props.isMobile ? repo.homepageUrl : undefined}
@@ -41,7 +43,20 @@ export default function Project(props) {
                 .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
                 .join(' ')
             }</h2>
+
+            <div className="chips-container">
+                {repo.languages.nodes.map(lang => (
+                    <div 
+                        className="chip" 
+                        // style={{backgroundColor: lang.color}}
+                    >
+                        {lang.name}
+                    </div>
+                ))}
+            </div>
+            
             <p>{props.description}</p>
+
         </a>
 
         <div className="button-slider">

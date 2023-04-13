@@ -12,13 +12,14 @@ export default function About(props) {
             <div className="Name"> Koliur Rahman,</div> 
 
             <div className="break"/>
-            {/* <div className="break"/> */}
+            <div className="break"/>
 
             <div className="A">A 
                 {/* <strong>Web Developer</strong> */}
             </div>
             <div className="Web-Developer"> Web Developer </div> 
             
+            <div className="break"/>
             <div className="break"/>
 
             <div className="calls-to-action">

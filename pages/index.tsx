@@ -1,29 +1,55 @@
 import React from 'react'
 import App from '../components/App'
 
+export const GitHubDataContext = React.createContext(null)
+
 export default function Home(props) {
   const repos = props?.repos?.data?.user?.repositories?.nodes
 
-  return <App
-    repos={repos}
-  />
+  return <GitHubDataContext.Provider value={repos}>
+    <App
+      repos={repos}
+    />
+  </GitHubDataContext.Provider>
 }
 
 export async function getStaticProps() {
   const query = `
-    query {
-      user(login: "dugramen") {
-        repositories(first: 20, privacy: PUBLIC) {
-          nodes {
+  {
+    user(login: "dugramen") {
+      repositories(first: 20, privacy: PUBLIC) {
+        nodes {
+          name
+          openGraphImageUrl
+          description
+          homepageUrl
+          url
+          languages(first: 10) {
+            nodes {
+              name
+              color
+            }
+          }
+          repositoryTopics(first: 10) {
+            nodes {
+              topic {
+                name
+              }
+            }
+          }
+          id
+        }
+      }
+      pinnedItems(first: 10) {
+        nodes {
+          ... on Repository {
+            id
             name
-            openGraphImageUrl
-            description
-            homepageUrl
-            url
           }
         }
       }
     }
+  }
   `
   const res = await fetch('https://api.github.com/graphql', {
     method: 'POST',

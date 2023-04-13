@@ -2,49 +2,44 @@ import React from "react";
 
 export default function About(props) {
     return (
-    <div className="Page AboutPage" style={{
-        fontSize: '2rem',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        marginTop: '25vh',
-    }}>
-        <div className="HomePage-hello" style={{
-            fontSize: '1rem'
-        }}
-        >Hello </div>
+    <div className="AboutPage Page" >
+        <div className="text-wrapper">
+            <div className="Hello" >Hello</div>
 
-        <div style={{
-            display: 'inline',
-        }}
-        > {"I'm"}
-            <span style={{
-                fontWeight: 'bold',
-                fontSize: '2rem',
-            }}
-            > Koliur Rahman, </span> 
+            <div className="break"/>
+
+            <div className="Im"> {"I'm"}</div>
+            <div className="Name"> Koliur Rahman,</div> 
+
+            <div className="break"/>
+            {/* <div className="break"/> */}
+
+            <div className="A">A 
+                {/* <strong>Web Developer</strong> */}
+            </div>
+            <div className="Web-Developer"> Web Developer </div> 
+            
+            <div className="break"/>
+
+            <div className="calls-to-action">
+                <a href="/resume.pdf" download="resume.pdf">
+                    <button>Resume</button>
+                </a>
+                <button onClick={() => {
+                    document.getElementById('ContactPage').scrollIntoView()
+                }}>Contact</button>
+            </div>
+            
+            <div className="break"/>
+
+            {/* <div className="initial-headers">
+                {['Resume', 'About', 'Portfolio', 'Contact'].map(label => (
+                    <div className="header">{label}</div>
+                ))}
+            </div> */}
         </div>
 
-        <div style={{
-            display: 'inline',
-        }}
-        > A
-            <span style={{
-                fontWeight: 'bold',
-                fontSize: '2rem',
-            }}
-            > Software Developer </span> 
-        </div>
 
-        <div className="calls-to-action">
-            <a href="/resume.pdf" download="resume.pdf">
-                <button>Resume</button>
-            </a>
-
-            <button onClick={() => {
-                document.getElementById('ContactPage').scrollIntoView()
-            }}>Contact</button>
-        </div>
     </div>
     )
 }

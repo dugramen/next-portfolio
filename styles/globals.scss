@@ -61,6 +61,7 @@ textarea {
   border: 0px solid black;
   border-radius: 12px;
   padding: 10px 16px;
+  box-shadow: 0px 0px 10px 0px var(--navbar-color);
 }
 
 textarea {
@@ -83,6 +84,10 @@ h1 {
   flex-direction: column;
   gap: 20px;
   padding: 0px var(--site-offset-w);
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y proximity;
+  scroll-snap-stop: always;
 }
 
 button {
@@ -101,69 +106,199 @@ button {
   width: 100%;
 }
 
-.floating {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  width: 100%;
-  background-color: var(--navbar-color);
-  box-shadow: 0px 0px 32px var(--navbar-color);
-  transition: 0.5s;
+.App {
+  position: relative;
+  @keyframes fade-in {
+    0% {opacity: 0;}
+    100% {opacity: 100%;}
+  }
+  animation: fade-in .3s forwards;
+  // background: lighten($color: orange, $amount: 25);
+  // color: white;
+}
 
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  // background: linear-gradient(red, orange 25%, transparent);
+  background: linear-gradient(red, orange);
+  transition: .3s;
+  // height: var(--nav-height);
+  opacity: 0;
+  pointer-events: none;
+  
+  // &.top {
+  // }
   &.top {
-    background-color: white;
-    box-shadow: 0px 0px 0px transparent;
+    height: 100%; 
+    opacity: 100%;
+  }
+}
+
+.gradient-button {
+  background-image: linear-gradient(to right, red, orange, red);
+  color: white;
+  align-self: center;
+  background-size: 200% auto;
+  background-position: left;
+  transition: .5s;
+  &:hover {
+    background-position: right;
+    // color: black;
   }
 }
 
 .Navbar {
+  z-index: 10;
+  background: var(--bg-color);
+  // opacity: 100%;
+  
+  position: fixed;
+  // inset: 0;
+  top: 0;
+  right: 16px;
+  // right: 16px;
+  // @at-root .scroll-top & {
+  //   position: relative;
+
+  //   // transform: translateY(100vh);
+  //   // opacity: 0;
+  // }
+
+  box-shadow: 0px 0px 15px 0px white;
+  // color: white;
+
+  width: 100%;
   height: var(--nav-height);
-  width: auto;
-  background-color: transparent;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: flex-start;
   padding: 0 var(--site-offset-w);
   margin: 0;
 
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  transition: .3s;
+  // gap: 10px;
+
+  // @at-root .scroll-top & {
+  //   height: 100%;
+  // }
+
+  .nav-resume {
+    margin-right: 10px;
+  }
+  
   .Nav-item,
   .name {
-    height: 100%;
+    // height: 100%;
+    // margin: auto;
     color: var(--text-color);
     margin: 0;
-    padding: 0px 20px;
     display: flex;
-    align-items: center;
+    // align-items: center;
+    // color: white;
+  }
+  .Nav-item {
+    // padding: var(--nav-height) 20px;
+    padding: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: transparent;
+    position: relative;
+    &::before {
+      position: absolute;
+      bottom: 10px;
+      right: 10%;
+      width: 0;
+      height: 3px;
+      content: '';
+      background: linear-gradient(red, orange);
+      transition: .3s;
+    }
+    &:hover {
+      color: red;
+      &::before {
+        width: 80%;
+      }
+    }
   }
   .name {
     margin-right: auto;
     font-weight: bold;
     font-size: large;
-  }
-  .Nav-item {
-    padding: 0px 20px;
-    cursor: pointer;
-    transition: 0.3s;
-    background-color: transparent;
-  }
-  .Nav-item:hover {
-    background-color: hsla(0, 0%, 0%, 0.15);
+    color: red;
   }
 }
 
 .Page {
-  min-height: calc(100vh - var(--nav-height));
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
+  // min-height: calc(100vh - var(--nav-height));
+  min-height: 100vh;
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   align-items: center;
+
+  h1 {
+    margin-top: calc(var(--nav-height) + 20px);
+  }
 }
 
 .AboutPage {
+  // color: white;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // padding-top: 25vh;
+
+  // position: fixed;
+  // inset: 0;
+  height: 100vh;
+  z-index: 15;
+  // background: linear-gradient(red, orange);
+  transition: .3s;
+  opacity: 0;
+
+  pointer-events: none;
+  // transform: translateY(-100%);
+  
+  @at-root .scroll-top & {
+    opacity: 100%;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  // margin: calc(0 - var(--nav-height));
+
+  // margin-top: 50%;
+  // transform: translateY(-50%);
+
+  .initial-headers {
+    margin-top: 30px;
+    // position: fixed;
+    // bottom: 40%;
+    // left: 50%;
+    // transform: translateX(-50%);
+    display: flex;
+    gap: 24px;
+    // color: black;
+    // font-weight: bold;
+    .header {
+      font-size: 1.2rem;
+    }
+  }
+
   .calls-to-action {
     display: flex;
+    // display: none;
     gap: 30px;
     margin-top: 18px;
+    color: white;
 
     a {
       font-size: small;
@@ -171,24 +306,75 @@ button {
 
     button {
       border-radius: 30px;
-      border: 2px solid black;
+      border: 2px solid white;
       padding: 8px 32px;
       background-color: transparent;
-      color: black;
+      color: white;
       transition: 0.3s;
 
       &:hover {
-        background-color: black;
-        color: white;
+        background-color: white;
+        color: red;
       }
     }
   }
+
+  @keyframes fade-slide-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    100% {
+      opacity: 100%;
+      transform: translateY(0px);
+    }
+  }
+  .text-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    white-space: pre;
+
+    & > * {
+      opacity: 0;
+      animation-name: fade-slide-in;
+      animation-duration: .3s;
+      animation-fill-mode: forwards;
+    }
+
+    @for $index from 1 through 20 {
+      & :nth-child(#{$index}) {
+        // background: lighten($color: red, $amount: $i * 5%);
+        animation-delay: .3s + .2s * $index;
+      }
+    }
+
+    color: white;
+    .Hello {
+      font-size: 1.5rem;
+    }
+    .Name, .Web-Developer {
+      font-weight: bold;
+      font-size: 2rem;
+      // color: black;
+    }
+
+    .break {
+      flex-basis: 100%;
+      height: 0;
+    }
+
+    
+  }
+
 }
 
 .SkillPage {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 40px;
 
   .skill-container {
     $icon-size: 70px;
@@ -196,6 +382,7 @@ button {
 
     height: 100%;
     align-self: center;
+    align-items: flex-start;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -264,6 +451,7 @@ button {
 .ProjectsPage {
   $debug-bg: hsl(0, 0%, 95%);
   margin: 0px calc(var(--site-offset-w) * -1);
+  margin-bottom: 20px;
   // background-color: $debug-bg;
 
   .projects-container {
@@ -273,9 +461,9 @@ button {
     flex-direction: row;
     align-items: stretch;
     justify-content: center;
-    gap: 16px;
+    gap: 20px;
 
-    $card-color: white;
+    $card-color: var(--navbar-color);
 
     .Project {
       $project-size: 300px;
@@ -295,7 +483,7 @@ button {
       // overflow-y: hidden;
       // overflow-x: visible;
       position: relative;
-      box-shadow: 0px 0px 10px lightgray;
+      box-shadow: 0px 0px 10px $card-color;
       // border: 1px solid black;
 
       .img-container {
@@ -304,13 +492,15 @@ button {
         overflow: hidden;
         display: flex;
         justify-content: center;
+        
         //   border-radius: 8px;
         // align-items: flex-start;
         // clip-path: inset(calc(50% - calc($project-size / 2.0)));
         // transition: .3s;
         z-index: 1;
-
+        
         img {
+          // box-shadow: inset 0px 0px 10px 5px black;
           position: relative;
           z-index: -1;
           max-height: 100%;
@@ -327,7 +517,13 @@ button {
         padding: 8px 20px;
         transition: 0.3s;
         margin-bottom: 0;
+        // color: darken($color: red, $amount: 10);
       }
+      // &:hover {
+      //   .text-container h2 {
+      //     color: red;
+      //   }
+      // }
 
       .button-slider {
         $margin-bottom: 20px;
@@ -346,37 +542,41 @@ button {
         transform: translateY(calc(100% + $margin-bottom));
         transition: 0.3s;
 
+        // button {
+        //   width: 100%;
+        //   border-width: 2px;
+        //   border-style: solid;
+        //   border-color: var(--button-color);
+        // }
+        
         button {
-          width: 100%;
-          padding: 8px 32px;
-          border-width: 2px;
-          border-style: solid;
-          border-color: var(--button-color);
+          margin-top: 4px;
+          padding: 10px 32px;
+          // border: 3px solid orangered;
+          // box-shadow: 2px 2px 3px 2px gray;
+          
+          // box-sizing: border-box; 
+          // border-style: solid;
+          // transition: 0.3s;
+          // border-width: 2px;
+          // border-color: black;
+          // color: black;
+          // background-color: transparent;
+          
+          // &:hover {
+          //   color: white;
+          //   background-color: red;
+          //   border-color: red;
+          // }
         }
-
-        .github {
-          button {
-            box-sizing: border-box;
-            border-color: black;
-            border-style: solid;
-            transition: 0.3s;
-            border-width: 2px;
-            // box-shadow: 0px 0px 4px black;
-
-            color: black;
-            background-color: transparent;
-
-            &:hover {
-              color: white;
-              background-color: black;
-            }
-          }
-        }
+        // .github {
+        // }
       }
 
       &:hover {
         // background-color: hsla(0, 0%, 0%, .1);
         cursor: pointer;
+        // color: red;
 
         img {
           transform: scale(0.8);
@@ -398,6 +598,10 @@ button {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    margin: 20px;
+    margin-top: 10px;
 
     // input[type=text], input[type=email] {
     //   align-self: flex-start;
@@ -421,20 +625,26 @@ button {
 
   .content {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    
     gap: 20px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-items: stretch;
+    width: min-content;
   }
+
   .contact-info {
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 8px;
     align-items: center;
-    width: min-content;
+    // width: min-content;
     height: min-content;
     justify-self: center;
+
+    .icon {
+      justify-self: end;
+    }
 
     // display: flex;
     // flex-direction: column;

@@ -51,7 +51,7 @@ export default function Project(props) {
                 target='_blank'
                 rel="noreferrer"
             >
-                <button>
+                <button className="gradient-button">
                     GitHub
                 </button>
             </a>
@@ -63,7 +63,7 @@ export default function Project(props) {
                 target='_blank'
                 rel="noreferrer"
             >
-                <button>
+                <button className="gradient-button">
                     Try out
                 </button>
             </a>}

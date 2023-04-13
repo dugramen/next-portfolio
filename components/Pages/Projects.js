@@ -18,8 +18,8 @@ export default function Projects(props) {
     // console.log(props.repos)
     
     return (
-    <div className="Page ProjectsPage" id="ProjectsPage">
-        <h1>Projects</h1>
+    <div className="Page ProjectsPage" id="PortfolioPage">
+        <h1>Portfolio</h1>
         
         <div className="projects-container">
             {props.repos?.

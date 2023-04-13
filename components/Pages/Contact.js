@@ -22,6 +22,22 @@ export default function ContactPage(props) {
     <div className="Page ContactPage" id="ContactPage">
         <h1>Contact</h1>
         <div className="content">
+            <div className="contact-info">
+                {[
+                    ['Phone', `-tel:516-888-9701`, faPhone],
+                    ['Email', `-mailto:koliur.rahman@my.liu.edu`, faEnvelope],
+                    ['GitHub', 'https://github.com/dugramen', faGithub],
+                ].map(([label, link, icon]) => (
+                    <React.Fragment key={label}>
+                        <FontAwesomeIcon icon={icon} className="icon"/>
+                        <div>{label}</div>
+                        <a href={link.startsWith('-') ? link.replace('-', '') : link} target="_blank">
+                            {link.startsWith('-') ? link.split(':').at(-1): link}
+                        </a>
+                    </React.Fragment>
+                ))}
+            </div>
+            
             <form>
                 <div className="form-item">
                     <label> Name </label>
@@ -53,7 +69,7 @@ export default function ContactPage(props) {
                     />
                 </div>
 
-                <button className="submit-button" onClick={(e) => {
+                <button className="submit-button gradient-button" onClick={(e) => {
                     e.preventDefault()
                     emailjs.send('service_d059d39', 'template_c477dlr', formData, 'bm1VLqjOUpOWDi8FS')
                     .then((result) => {
@@ -64,22 +80,6 @@ export default function ContactPage(props) {
                 }}>Submit</button>
 
             </form>
-
-            <div className="contact-info">
-                {[
-                    ['Phone', `-tel:516-888-9701`, faPhone],
-                    ['Email', `-mailto:koliur.rahman@my.liu.edu`, faEnvelope],
-                    ['GitHub', 'https://github.com/dugramen', faGithub],
-                ].map(([label, link, icon]) => (
-                    <React.Fragment key={label}>
-                        <FontAwesomeIcon icon={icon}/>
-                        <div>{label}</div>
-                        <a href={link.startsWith('-') ? link.replace('-', '') : link} target="_blank">
-                            {link.startsWith('-') ? link.split(':').at(-1): link}
-                        </a>
-                    </React.Fragment>
-                ))}
-            </div>
         </div>
     </div>
     )

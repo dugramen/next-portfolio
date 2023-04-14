@@ -379,8 +379,48 @@ button {
   align-items: center;
   margin-top: 40px;
 
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .info-card {
+    padding: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--navbar-color);
+    box-shadow: 0px 0px 5px var(--navbar-color);
+    width: 520px;
+    transition: .3s;
+    
+    // &:hover {
+    //   box-shadow: 0px 0px 5px 5px var(--navbar-color);
+    // }
+    
+    &.vertical {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    & > svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    p {
+      word-break: break-word;
+      margin: 0;
+    }
+    
+  }
+
   .skill-container {
-    $icon-size: 70px;
+    $icon-size: 50px;
     $gap: 40px;
 
     height: 100%;
@@ -391,7 +431,7 @@ button {
     flex-wrap: wrap;
     max-width: calc(5 * ($icon-size + $gap));
     justify-content: center;
-    gap: $gap;
+    // gap: $gap;
 
     .skill {
       $width: 15px;
@@ -408,7 +448,7 @@ button {
       p {
         margin: 0px;
         font-size: 0.8rem;
-        color: hsl(0, 0%, 50%);
+        // color: hsl(0, 0%, 50%);
         transition-property: color;
         transition-duration: .3s;
         // transition: color 0.3s;
@@ -519,10 +559,9 @@ button {
         .chip {
           // margin-top: -15px;
           // margin-bottom: -15px;
-          font-size: .75rem;
-          // font-weight: bold;
+          font-size: .7rem;
+          font-weight: bold;
           color: black;
-          // color: orangered;
           border-radius: 8px;
           padding: 4px 14px;
 

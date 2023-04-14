@@ -24,8 +24,8 @@ export default function ContactPage(props) {
         <div className="content">
             <div className="contact-info">
                 {[
-                    ['Phone', `-tel:516-888-9701`, faPhone],
                     ['Email', `-mailto:koliur.rahman@my.liu.edu`, faEnvelope],
+                    ['Phone', `-tel:516-888-9701`, faPhone],
                     ['GitHub', 'https://github.com/dugramen', faGithub],
                 ].map(([label, link, icon]) => (
                     <React.Fragment key={label}>

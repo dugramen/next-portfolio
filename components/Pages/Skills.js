@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGamepad, faGraduationCap, faCode } from '@fortawesome/free-solid-svg-icons'
 
 function injectStyle(style) {
     const styleElement = document.createElement('style');
@@ -58,9 +60,9 @@ function Icon({name, path}) {
             />
         </div>
 
-        <p>
+        {/* <p>
             {name}
-        </p>
+        </p> */}
     </div>
     )
 }
@@ -68,10 +70,18 @@ function Icon({name, path}) {
 
 export default function Skills(props) {
     const skills = [
-        'HTML', 'CSS', 'JavaScript',
-        'React', 'SASS', 'TypeScript',
-        'NextJS', 'MySQL',
-        'C++', 'Python', 'Godot'
+        'HTML', 
+        'CSS', 
+        'JavaScript',
+        'TypeScript',
+        'React', 
+        'NextJS', 
+        'SASS', 
+        'NodeJS',
+        'MySQL',
+        'C++', 
+        'Python', 
+        'Godot'
     ].reduce((accum, val) => {
         return {
             ...accum,
@@ -84,15 +94,49 @@ export default function Skills(props) {
     return (
     <div className="Page SkillPage" >
         <h1 id="SkillsPage">Skills</h1>
-        <div className="skill-container">
-            {Object.keys(skills).map(v => (
-                <Icon
-                    key={v}
-                    name={v}
-                    path={skills[v]}
-                />
-            ))}
+
+        <div className="card-container">
+            <div className="info-card">
+                <FontAwesomeIcon icon={faGraduationCap}/>
+                <p>
+                    Hi, I'm Koliur Rahman, a recent Computer Science graduate from LIU Brooklyn. <br/>
+                </p>
+            </div>
+
+            <div className="info-card">
+                <FontAwesomeIcon icon={faCode}/>
+                <p>
+                    I've been programming for a few years now, and have focused my last year on web development.
+                    While I don't have any proffesional experience yet, I've worked on several personal projects highlighting my capabilities.
+                </p>
+            </div>
+
+            <div className="info-card">
+                <FontAwesomeIcon icon={faGamepad} className="icon"/>
+
+                <p>
+                    I love video games. Platformers and RPGs in particular.<br/>
+                    I mostly play indie games, and do some game development myself.<br/>
+                    
+                </p>
+            </div>
+
+            <div className="info-card vertical">
+                Here are the languages and frameworks I use
+                <div className="skill-container">
+                    {Object.keys(skills).map(v => (
+                        <Icon
+                            key={v}
+                            name={v}
+                            path={skills[v]}
+                        />
+                    ))}
+                </div>
+            </div>
+
         </div>
+
+
     </div>
     )
 }

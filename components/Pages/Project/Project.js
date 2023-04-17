@@ -1,6 +1,5 @@
-import Link from "next/link";
 import React from "react";
-// import { GitHubDataContext } from "../../../pages";
+import Image from "next/image";
 
 export default function Project(props) {
     const repo = props.repo
@@ -47,6 +46,7 @@ export default function Project(props) {
             <div className="chips-container">
                 {repo.languages.nodes.map(lang => (
                     <div 
+                        key={lang.name}
                         className="chip" 
                         // style={{backgroundColor: lang.color}}
                     >

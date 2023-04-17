@@ -106,8 +106,8 @@ export default function Skills(props) {
             <div className="info-card">
                 <FontAwesomeIcon icon={faCode}/>
                 <p>
-                    I've been programming for a few years now, and have focused my last year on web development.
-                    While I don't have any proffesional experience yet, I've worked on several personal projects highlighting my capabilities.
+                    I've been programming for 4-5 years now, and have focused my last year on web development.
+                    While I don't have proffesional experience yet, I have worked on several personal projects highlighting my capabilities.
                 </p>
             </div>
 
@@ -115,8 +115,9 @@ export default function Skills(props) {
                 <FontAwesomeIcon icon={faGamepad} className="icon"/>
 
                 <p>
-                    I love video games. Platformers and RPGs in particular.<br/>
-                    I mostly play indie games, and do some game development myself.<br/>
+                    I love video games. 
+                    My favorites are platformers and RPGs.
+                    I play a lot of indie games, and do some indie game development myself.<br/>
                     
                 </p>
             </div>

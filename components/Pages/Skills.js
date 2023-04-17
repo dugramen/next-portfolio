@@ -99,15 +99,15 @@ export default function Skills(props) {
             <div className="info-card">
                 <FontAwesomeIcon icon={faGraduationCap}/>
                 <p>
-                    Hi, I'm Koliur Rahman, a recent Computer Science graduate from LIU Brooklyn. <br/>
+                    Hi, I&apos;m Koliur Rahman, a recent Computer Science graduate from LIU Brooklyn. <br/>
                 </p>
             </div>
 
             <div className="info-card">
                 <FontAwesomeIcon icon={faCode}/>
                 <p>
-                    I've been programming for 4-5 years now, and have focused my last year on web development.
-                    While I don't have proffesional experience yet, I have worked on several personal projects highlighting my capabilities.
+                    I&apos;ve been programming for 4-5 years now, and have focused my last year on web development.
+                    While I don&apos;t have proffesional experience yet, I have worked on several personal projects highlighting my capabilities.
                 </p>
             </div>
 

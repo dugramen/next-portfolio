@@ -31,7 +31,7 @@ export default function ContactPage(props) {
                     <React.Fragment key={label}>
                         <FontAwesomeIcon icon={icon} className="icon"/>
                         <div>{label}</div>
-                        <a href={link.startsWith('-') ? link.replace('-', '') : link} target="_blank">
+                        <a href={link.startsWith('-') ? link.replace('-', '') : link} target="_blank" rel="noreferrer">
                             {link.startsWith('-') ? link.split(':').at(-1): link}
                         </a>
                     </React.Fragment>

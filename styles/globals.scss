@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -38,7 +42,27 @@ a {
 
 $solid-color: darken(red, 5);
 
+@keyframes fade-in-up {
+  from  {
+    opacity: 0;
+    translate: 0px 20px;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+  }
+}
 
+@keyframes fade-slide-in {
+  from {
+    opacity: 0;
+    translate: 0px -20px;
+  }
+  to {
+    opacity: 0;
+    translate: none;
+  }
+}
 
 @media only screen and (min-width: 600px) {
   :root {
@@ -333,25 +357,29 @@ button {
     }
   }
   .text-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: center;
+    // flex-wrap: wrap;
     white-space: pre;
 
-    & > * {
-      opacity: 0;
-      animation-name: fade-slide-in;
-      animation-duration: .3s;
-      animation-fill-mode: forwards;
-    }
-
-    @for $index from 1 through 20 {
-      & :nth-child(#{$index}) {
-        // background: lighten($color: red, $amount: $i * 5%);
-        animation-delay: .3s + .2s * $index;
+    .NameRow {
+      & > * {
+        opacity: 0;
+        animation-name: fade-slide-in;
+        animation-duration: .3s;
+        animation-fill-mode: forwards;
+        text-align: center;
+      }
+  
+      @for $index from 1 through 20 {
+        & :nth-child(#{$index}) {
+          // background: lighten($color: red, $amount: $i * 5%);
+          animation-delay: .5s + .3s * $index;
+        }
       }
     }
+
 
     color: white;
     .Hello {

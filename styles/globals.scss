@@ -8,6 +8,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  width: 100%;
+  height: 100%;
 }
 
 a {
@@ -30,22 +32,78 @@ a {
 // }
 
 :root {
-  --bg-color: white;
+  --bg-color: hsl(0, 0%, 80%);
   --text-color: black;
   --nav-height: 80px;
   --site-offset-w: 0px;
   --navbar-color: hsla(0, 0%, 95%, 1);
   --button-color: hsla(0, 0%, 95%, 1);
+  --background-gradient: linear-gradient(hsl(0, 100%, 40%), hsl(0, 100%, 20%));
   // --solid-color: desaturate(red, 10);
   // --button-color: black;
 }
 
-$solid-color: darken(red, 5);
+@mixin gradient-bg {
+  background: 
+    var(--background-gradient)
+  ;
+  background-attachment: fixed;
+  background-position: 0 0;
+  background-size: 100%;
+}
+
+.GradientFg {
+  @include gradient-bg();
+  transition: all .3s;
+  @at-root .scroll-not-top & {
+    opacity: 0;
+  }
+}
+
+// .GradientFg {
+//   @include gradient-bg();
+//   background: 
+//   linear-gradient(hsl(0, 100%, 40%), transparent 200px, transparent calc(100% - 200px), hsl(0, 100%, 20%))
+//   ;
+// }
+
+.ScrollView {
+  @keyframes scroll-in {
+    0% {
+      opacity: 0;
+      transform: translateZ(-500px);
+      // scale: 0;
+    }
+    // 50% {
+    30%, 70% {
+      opacity: 1;
+      transform: none;
+      // scale: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateZ(-500px);
+      // scale: 0;
+    }
+  }
+  // animation: scroll-in ease-out both;
+  animation-timeline: view();
+  animation-range: cover 0% cover calc(100% - 0px);
+}
+
+body {
+  // background-color: var(--bg-color);
+  // @include gradient-bg();
+  // color: white;
+  background: hsl(0, 0%, 80%);
+}
+
+$solid-color: hsl(0, 90%, 40%);
 
 @keyframes fade-in-up {
   from  {
     opacity: 0;
-    translate: 0px 20px;
+    translate: 0px 40px;
   }
   to {
     opacity: 1;
@@ -70,6 +128,22 @@ $solid-color: darken(red, 5);
   }
 }
 
+@keyframes expand-h {
+  from {
+    grid-template-columns: 0fr;
+    translate: 60px 0px;
+    // opacity: 0;
+  }
+  to {
+    grid-template-columns: 1fr;
+    translate: none;
+    // opacity: 1;
+  }
+}
+// .AWebDev {
+//   display: grid;
+// }
+
 // @media only screen and (min-width: 768px) {
 //   :root {
 //       --site-offset-w: 10vw;
@@ -86,11 +160,12 @@ input[type="text"],
 input[type="email"],
 textarea {
   outline: none;
-  background: var(--navbar-color);
-  border: 0px solid black;
+  background: color(from black srgb r g b / .4);
+  color: white;
+  // border: 0px solid black;
   border-radius: 12px;
   padding: 10px 16px;
-  box-shadow: 0px 0px 10px 0px var(--navbar-color);
+  box-shadow: 0px 0px 10px -5px black;
 }
 
 textarea {
@@ -100,23 +175,33 @@ textarea {
 
 h1 {
   font-size: 1.5rem;
-  // font-weight: normal;
+  font-weight: 600;
   margin-bottom: 3rem;
   margin-top: 3rem;
-  color: hsl(0, 0%, 60%);
+  @apply text-4xl opacity-80 font-bold ScrollView;
+  // color: hsl(0, 0%, 60%);
 }
 
+.NoScroll::-webkit-scrollbar {
+  display: none;
+}
 
+/* Hide scrollbar for IE, Edge and Firefox */
+.NoScroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 .Pages-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 0px var(--site-offset-w);
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y proximity;
-  scroll-snap-stop: always;
+  // display: flex;
+  // flex-direction: column;
+  // gap: 20px;
+  // padding: 0px var(--site-offset-w);
+  // height: 100vh;
+  // overflow-y: scroll;
+  // @apply NoScroll;
+  // scroll-snap-type: y proximity;
+  // scroll-snap-stop: always;
 }
 
 button {
@@ -136,33 +221,52 @@ button {
 }
 
 .App {
+  // @include gradient-bg();
   position: relative;
   @keyframes fade-in {
     0% {opacity: 0;}
     100% {opacity: 100%;}
   }
   animation: fade-in .3s forwards;
-  // background: lighten($color: orange, $amount: 25);
-  // color: white;
 }
 
-.background {
-  position: fixed;
-  inset: 0;
-  z-index: 15;
-  background: linear-gradient(red, orange);
-  transition: .3s;
-  // height: var(--nav-height);
-  opacity: 0;
-  pointer-events: none;
-  
-  // &.top {
-  // }
-  &.top {
-    height: 100%; 
-    opacity: 100%;
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
+
+// .background {
+//   @include gradient-bg();
+//   // background: blue;
+//   position: absolute;
+//   inset: 0;
+//   // z-index: 15;
+
+//   animation: fade-out auto linear both;
+//   animation-timeline: view();
+//   animation-range: exit 0% exit 100%;
+
+//   // linear-gradient(hsla(0, 0%, 0%, 0)),
+//   // background: 
+//   //   linear-gradient(hsl(0, 100%, 40%), hsl(0, 100%, 20%))
+//   // ;
+//   // opacity: .1;
+//   transition: .3s;
+//   // height: var(--nav-height);
+//   // opacity: 0;
+//   pointer-events: none;
+  
+//   // &.top {
+//   // }
+//   &.top {
+//     height: 100%; 
+//     // opacity: 100%;
+//   }
+// }
 
 .gradient-button {
   background-image: linear-gradient(to right, $solid-color, orange, $solid-color);
@@ -171,6 +275,10 @@ button {
   background-size: 200% auto;
   background-position: left;
   transition: .3s;
+  padding: 6px 20px;
+  // @apply text-sm;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
   &:hover {
     background-position: right;
     // color: black;
@@ -179,13 +287,16 @@ button {
 
 .Navbar {
   z-index: 10;
-  background: var(--bg-color);
+  // background: var(--bg-color);
   // opacity: 100%;
+  // @include gradient-bg();
+
+  color: white;
   
   position: fixed;
   // inset: 0;
   top: 0;
-  right: 16px;
+  // right: 16px;
   // right: 16px;
   // @at-root .scroll-top & {
   //   position: relative;
@@ -194,12 +305,12 @@ button {
   //   // opacity: 0;
   // }
 
-  box-shadow: 0px 0px 15px 0px white;
+  // box-shadow: 0px 5px 15px -15px black;
   // color: white;
 
   width: 100%;
   height: var(--nav-height);
-  padding: 0 var(--site-offset-w);
+  // padding: 0 var(--site-offset-w);
   margin: 0;
 
   display: flex;
@@ -207,11 +318,13 @@ button {
   justify-content: flex-end;
   align-items: center;
   transition: .3s;
+  opacity: 1;
   // gap: 10px;
-
-  // @at-root .scroll-top & {
-  //   height: 100%;
-  // }
+  
+  @at-root .scroll-top & {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
 
   .nav-resume {
     margin-right: 10px;
@@ -221,7 +334,8 @@ button {
   .name {
     // height: 100%;
     // margin: auto;
-    color: var(--text-color);
+    // color: var(--text-color);
+    color: $solid-color;
     margin: 0;
     display: flex;
     // align-items: center;
@@ -234,6 +348,8 @@ button {
     transition: 0.3s;
     background-color: transparent;
     position: relative;
+    color: black;
+    // color: hsl(0, 100%, 90%);
     &::before {
       position: absolute;
       bottom: 10px;
@@ -241,10 +357,11 @@ button {
       width: 0;
       height: 3px;
       content: '';
-      background: linear-gradient($solid-color, orange);
+      background: linear-gradient($solid-color, $solid-color);
       transition: .3s;
     }
     &:hover {
+      // color: $solid-color;
       color: $solid-color;
       &::before {
         width: 80%;
@@ -255,7 +372,7 @@ button {
     margin-right: auto;
     font-weight: bold;
     font-size: large;
-    color: $solid-color;
+    // color: $solid-color;
   }
 }
 
@@ -270,10 +387,12 @@ button {
   flex-direction: column;
   align-items: center;
 
-  h1 {
-    margin-top: calc(var(--nav-height) + 20px);
-  }
+  // h1 {
+  //   margin-top: calc(var(--nav-height) + 20px);
+  // }
 }
+
+
 
 .AboutPage {
   // color: white;
@@ -287,16 +406,17 @@ button {
   // position: fixed;
   // inset: 0;
   height: 100vh;
-  z-index: 15;
+  // z-index: 15;
   transition: .3s;
   opacity: 0;
 
   pointer-events: none;
+  transform: translateY(-100px);
   // transform: translateY(-100%);
   
   @at-root .scroll-top & {
     opacity: 100%;
-    transform: translateY(0);
+    transform: translateY(0px);
     pointer-events: all;
   }
 
@@ -401,6 +521,7 @@ button {
 
 }
 
+
 .SkillPage {
   display: flex;
   flex-direction: column;
@@ -412,16 +533,23 @@ button {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    // color: black;
+    color: color(from white srgb r g b / 1);
+    padding: 0px 16px;
   }
 
   .info-card {
+    @apply ScrollView;
     padding: 1.75rem;
     display: flex;
     align-items: center;
     gap: 1rem;
-    background-color: var(--navbar-color);
-    box-shadow: 0px 0px 5px var(--navbar-color);
-    width: 520px;
+    // background-color: var(--navbar-color);
+    color: black;
+    background-color: hsl(0, 0%, 0%, .1);
+    // background-color: hsla(0, 100%, 20%, .85);
+    box-shadow: 0px 0px 10px -5px black;
+    max-width: 520px;
     transition: .3s;
     
     // &:hover {
@@ -490,13 +618,14 @@ button {
         // transition: .25s;
 
         .underlay {
-          filter: brightness(0);
+          filter: brightness(0) invert(0);
+          opacity: .8;
           width: 100%;
           height: 100%;
         }
 
         .overlay {
-          filter: brightness(1);
+          filter: none;
           position: absolute;
           width: 100%;
           height: 100%;
@@ -521,8 +650,8 @@ button {
 
 .ProjectsPage {
   $debug-bg: hsl(0, 0%, 95%);
-  margin: 0px calc(var(--site-offset-w) * -1);
-  margin-bottom: 20px;
+  // margin: 0px calc(var(--site-offset-w) * -1);
+  // margin-bottom: 20px;
   // background-color: $debug-bg;
 
   .projects-container {
@@ -538,7 +667,7 @@ button {
 
     .Project {
       $project-size: 300px;
-      background-color: $card-color;
+      background-color: color(from black srgb r g b / .2);
       //   background-color: $debug-bg;
 
       border-radius: 12px;
@@ -549,17 +678,18 @@ button {
 
       display: flex;
       flex-direction: column;
+      gap: 8px;
       width: calc($project-size + $padding * 2);
       overflow: hidden;
       // overflow-y: hidden;
       // overflow-x: visible;
       position: relative;
-      box-shadow: 0px 0px 10px $card-color;
+      box-shadow: 0px 0px 10px -5px black;
       // border: 1px solid black;
 
       .img-container {
         width: $project-size;
-        height: calc($project-size * 0.7);
+        height: calc($project-size * 0.5);
         overflow: hidden;
         display: flex;
         justify-content: center;
@@ -602,10 +732,13 @@ button {
       }
 
       .text-container {
-        background-color: $card-color;
+        // background-color: $card-color;
         padding: 8px 20px;
         transition: 0.3s;
         margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
 
       }
 
@@ -694,6 +827,7 @@ button {
     .form-item {
       display: flex;
       flex-direction: column;
+      @apply ScrollView;
       // align-items: flex-start;
     }
   

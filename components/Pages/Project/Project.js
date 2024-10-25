@@ -15,7 +15,7 @@ export default function Project(props) {
 
     return (
     <div 
-        className="Project"
+        className="Project ScrollView"
     >
 
         <a 

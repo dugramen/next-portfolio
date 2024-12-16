@@ -6,6 +6,9 @@ import Skills from "./Pages/Skills";
 import { twMerge } from "tailwind-merge";
 // import { useWindowScroll } from "@uidotdev/usehooks";
 import { useScrollBreakpoint } from "./Pages/components";
+import { Three } from "./Pages/three";
+
+export const ScrollBreakpoint = 100;
 
 export default function App({ repos }) {
   const containerRef = React.useRef<HTMLDivElement | null>(null);
@@ -13,58 +16,13 @@ export default function App({ repos }) {
   // const [atTop, setAtTop] = React.useState(true);
   const pages = ["Skills", "Portfolio", "Contact"];
 
-  const atTop = !useScrollBreakpoint(100);
+  const atTop = !useScrollBreakpoint(ScrollBreakpoint);
 
-  // const [pos] = useWindowScroll();
-
-  // useEffect(() => {
-  //   const listener = () => {
-  //     console.log('scroll', window.scrollY)
-  //     setAtTop(window.scrollY > 100)
-  //   }
-  //   window.addEventListener('scroll', listener)
-  //   return window.removeEventListener('scroll', listener)
-  // }, [])
-
-  // useEffect(() => {
-  //   setAtTop((old) => {
-  //     return (pos.y ?? 0) < 100
-  //     // if (containerRef.current) {
-  //     //   return containerRef.current.scrollTop <= 100;
-  //     // } else {
-  //     //   return old;
-  //     // }
-  //   });
-  // }, [pos])
-
-  // function handleScroll() {
-  //   // setTopLerp(old => {
-  //   //   if (containerRef.current) {
-  //   //     return Math.min(containerRef.current.scrollTop / window.innerHeight, 1)
-  //   //   } else {return old}
-  //   // })
-
-  //   setAtTop((old) => {
-  //     if (containerRef.current) {
-  //       return containerRef.current.scrollTop <= 100;
-  //     } else {
-  //       return old;
-  //     }
-  //   });
-
-  //   // setAtTop(window.pageYOffset === 0)
-  // }
-
-  // React.useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll)
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll)
-  //   }
-  // }, [])
+  console.log({ atTop });
 
   return (
     <div className={"App " + (atTop ? "scroll-top" : "scroll-not-top")}>
-      <div
+      {/* <div
         className={twMerge("fixed inset-0 pointer-events-none")}
         style={{
           background: `linear-gradient(
@@ -75,7 +33,7 @@ export default function App({ repos }) {
         )`,
           zIndex: 20,
         }}
-      />
+      /> */}
       <div
         className="fixed inset-0 GradientFg pointer-events-none"
         style={{ zIndex: 20 }}
@@ -86,10 +44,26 @@ export default function App({ repos }) {
       <NavBar pages={pages} scrollContainer={containerRef.current} />
 
       <div
-        className="flex flex-col gap-4 p-0"
+        className={twMerge("fixed left-0 right-0 top-0 h-[100vh] -z-50 transition-all duration-700", atTop && 'duration-300')}
+        style={{
+          filter: atTop ? "" : "brightness(1)",
+        }}
+        >
+        <div
+          className={twMerge("absolute inset-0 transition-all duration-500")}
+          style={{
+            filter: atTop ? "" : "grayscale(1) brightness(5)",
+          }}
+        >
+          <Three atTop={atTop}/>
+        </div>
+      </div>
+
+      <div
+        className="flex flex-col gap-4 p-0 "
         ref={containerRef}
         style={{
-          overflowY: 'visible'
+          overflowY: "visible",
         }}
         // onScroll={handleScroll}
         // onResize={handleScroll}
@@ -106,13 +80,13 @@ export default function App({ repos }) {
 function NavBar({ pages, scrollContainer }) {
   return (
     <nav
-      className={`Navbar`}
+      className={`Navbar px-10`}
       style={{
         // transform: `translateY(${(1-topLerp) * window.innerHeight}px)`
         zIndex: 100,
       }}
     >
-      <p className="name">Koliur Rahman</p>
+      <p className="text-2xl text-red-900 font-bold mr-auto">Koliur Rahman</p>
       <button className="nav-resume gradient-button">Resume</button>
       {pages.map((item) => (
         <p

@@ -10,6 +10,7 @@ import {
 import { useInView } from "react-intersection-observer";
 import { twMerge } from "tailwind-merge";
 import { useWindowScroll } from "@uidotdev/usehooks";
+import { ScrollBreakpoint } from "../App";
 
 export function Page(
   p: ComponentProps<"div"> & { inner?: ComponentProps<"div"> }
@@ -19,8 +20,18 @@ export function Page(
   // const [pos, scrollTo] = useWindowScroll();
   const [startingPos, setStartingPos] = useState(Infinity);
   const inView = useScrollBreakpoint(
-    startingPos - (typeof window !== "undefined" ? window.innerHeight : 0)
+    startingPos - (typeof window !== "undefined" ? window.innerHeight - ScrollBreakpoint : 0)
   );
+  const pageRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (pageRef.current && !Number.isFinite(startingPos)) {
+      const { top } = pageRef.current.getBoundingClientRect();
+      // console.log(p.className, top);
+      setStartingPos(top);
+      // startingPos.current = r.scrollTop;
+    }
+  }, [])
 
   return (
     <div
@@ -33,15 +44,7 @@ export function Page(
       style={{
         ...p.style,
       }}
-      ref={(r) => {
-        // ref(r);
-        if (r && !Number.isFinite(startingPos)) {
-          const { top } = r.getBoundingClientRect();
-          console.log(p.className, top);
-          setStartingPos(top);
-          // startingPos.current = r.scrollTop;
-        }
-      }}
+      ref={pageRef}
     >
       <div
         {...p.inner}
@@ -59,7 +62,7 @@ export function Page(
 }
 
 export function useScrollBreakpoint(breakpoint: number) {
-  const [scrolledPast, setScrolledPast] = useState(false);
+  const [scrolledPast, setScrolledPast] = useState(false); 
   useEffect(() => {
     console.log("breakpoint ", breakpoint);
     const listener = () => {

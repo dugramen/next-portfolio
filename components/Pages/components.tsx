@@ -28,7 +28,9 @@ export function Page(
     if (pageRef.current && !Number.isFinite(startingPos)) {
       const { top } = pageRef.current.getBoundingClientRect();
       // console.log(p.className, top);
-      setStartingPos(top);
+      setStartingPos(top + window.scrollY);
+      console.log('stop ---- ', top + window.scrollY)
+      // setStartingPos(top);
       // startingPos.current = r.scrollTop;
     }
   }, [])

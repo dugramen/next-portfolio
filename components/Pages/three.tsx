@@ -2,7 +2,9 @@ import { Canvas } from "@react-three/fiber";
 import { EffectComposer } from "@react-three/postprocessing";
 import { useWindowScroll } from "@uidotdev/usehooks";
 
-export function Three({atTop}) {
+export function Three({
+  // atTop
+}) {
   const [scroll] = useWindowScroll();
 
   return (
@@ -10,7 +12,7 @@ export function Three({atTop}) {
       <Canvas
         shadows
         camera={{
-          position: [0, scroll.y ?? 0, 5],
+          position: [0, 0, 5],
         }}
       >
         {/* Ambient light provides general illumination */}

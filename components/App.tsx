@@ -55,7 +55,9 @@ export default function App({ repos }) {
             filter: atTop ? "" : "grayscale(1) brightness(5)",
           }}
         >
-          <Three atTop={atTop}/>
+          <Three 
+          // atTop={atTop}
+          />
         </div>
       </div>
 

@@ -130,6 +130,10 @@ function NavBar({ pages, scrollContainer }) {
       <div
         className="sm:hidden flex flex-col gap-1 ml-1"
         onClick={() => setOpen(!open)}
+        onBlur={() => {
+          setOpen(false)
+        }}
+        tabIndex={0}
       >
         {[0, 1, 2].map((i) => (
           <div

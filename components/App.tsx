@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Projects from "./Pages/Projects";
@@ -44,18 +44,21 @@ export default function App({ repos }) {
       <NavBar pages={pages} scrollContainer={containerRef.current} />
 
       <div
-        className={twMerge("fixed left-0 right-0 top-0 h-[100vh] -z-50 transition-all duration-700", atTop && 'duration-300')}
+        className={twMerge(
+          "fixed left-0 right-0 top-0 h-[100vh] -z-50 transition-all duration-700",
+          atTop && "duration-300"
+        )}
         style={{
           filter: atTop ? "" : "brightness(1)",
         }}
-        >
+      >
         <div
           className={twMerge("absolute inset-0 transition-all duration-500")}
           style={{
-            filter: atTop ? "" : "grayscale(1) brightness(5)",
+            filter: atTop ? "" : "grayscale(1) brightness(6)",
           }}
         >
-          <Three 
+          <Three
           // atTop={atTop}
           />
         </div>
@@ -80,6 +83,7 @@ export default function App({ repos }) {
 }
 
 function NavBar({ pages, scrollContainer }) {
+  const [open, setOpen] = useState(false);
   return (
     <nav
       className={`Navbar px-10`}
@@ -90,23 +94,49 @@ function NavBar({ pages, scrollContainer }) {
     >
       <p className="text-2xl text-red-900 font-bold mr-auto">Koliur Rahman</p>
       <button className="nav-resume gradient-button">Resume</button>
-      {pages.map((item) => (
-        <p
-          className="Nav-item"
-          key={item}
-          onClick={() => {
-            const element = document.getElementById(`${item}Page`);
-            if (element) {
-              scrollContainer?.scrollTo?.({
-                top: element.offsetTop - 100,
-                behavior: "smooth",
-              });
-            }
-          }}
-        >
-          {item}
-        </p>
-      ))}
+
+      <div
+        className={twMerge(
+          "hidden sm:flex sm:flex-row items-center",
+          open && "flex flex-col"
+        )}
+      >
+        {pages.map((item) => (
+          <p
+            className="Nav-item"
+            key={item}
+            onClick={() => {
+              const element = document.getElementById(`${item}Page`);
+              if (element) {
+                scrollContainer?.scrollTo?.({
+                  top: element.offsetTop - 100,
+                  behavior: "smooth",
+                });
+              }
+            }}
+          >
+            {item}
+          </p>
+        ))}
+      </div>
+      <div
+        className="sm:hidden flex flex-col gap-1 ml-1"
+        onClick={() => setOpen(!open)}
+      >
+        {[0, 1, 2].map((i) => (
+          <div
+            className={twMerge(
+              "w-6 h-1 rounded-full bg-red-900 transition-transform duration-500 ease-in-out",
+              open && [
+                "rotate-45 translate-y-2", 
+                "-rotate-45", 
+                "-rotate-45 -translate-y-2"
+              ][i]
+            )}
+            key={i}
+          />
+        ))}
+      </div>
     </nav>
   );
 }

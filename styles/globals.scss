@@ -399,7 +399,45 @@ button {
   // }
 }
 
+// @starting-style {
+//   .NavItemsPanel {
+//     opacity: 0;
+//   }
+// }
 
+@keyframes panel-in {
+  from {
+    scale: 0%;
+  }
+  to {
+    // display: flex;
+    scale: 100%;
+  }
+}
+
+@keyframes panel-out {
+  from {
+    scale: 100%;
+  }
+  to {
+    // display: none;
+    scale: 0%;
+  }
+}
+
+// .NavItemsPanel {
+//   // transition: all .5s;
+//   animation: panel-out .5s forwards;
+//   // display: none;
+//   // opacity: 0;
+  
+//   &.Open {
+//     // transition-behavior: allow-discrete;
+//     animation: panel-in .5s forwards;
+//     // opacity: 1;
+//     // display: flex;
+//   }
+// }
 
 .AboutPage {
   // color: white;

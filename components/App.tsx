@@ -97,14 +97,14 @@ function NavBar({ pages, scrollContainer }) {
 
       <div
         className={twMerge(
-          `hidden items-center`,
-          `backdrop-blur-sm bg-black/10
-            shadow-sm`,
+          `NavItemsPanel items-center absolute top-full -translate-y-3`,
+          "flex flex-col",
+          `backdrop-blur-sm bg-black/10 shadow-sm rounded-lg `,
+          "animate-[panel-out_.5s_forwards]",
           open && `
-            flex flex-col absolute top-full rounded-lg -translate-y-3
-            transition-all duration-300
+            animate-[panel-in_.5s_forwards]
           `,
-          "sm:relative sm:flex sm:flex-row sm:top-auto sm:transform-none sm:rounded-full sm:px-2"
+          "sm:relative sm:flex sm:flex-row sm:top-auto sm:translate-y-0 sm:rounded-full sm:px-2 sm:scale-100 sm:animate-none"
         )}
       >
         {pages.map((item) => (

@@ -86,7 +86,7 @@ function NavBar({ pages, scrollContainer }) {
   const [open, setOpen] = useState(false);
   return (
     <nav
-      className={`Navbar px-10`}
+      className={`Navbar px-10 relative`}
       style={{
         // transform: `translateY(${(1-topLerp) * window.innerHeight}px)`
         zIndex: 100,
@@ -97,13 +97,21 @@ function NavBar({ pages, scrollContainer }) {
 
       <div
         className={twMerge(
-          "hidden sm:flex sm:flex-row items-center",
-          open && "flex flex-col"
+          `hidden items-center`,
+          `backdrop-blur-sm bg-black/10
+            shadow-sm`,
+          open && `
+            flex flex-col absolute top-full rounded-lg -translate-y-3
+            transition-all duration-300
+          `,
+          "sm:relative sm:flex sm:flex-row sm:top-auto sm:transform-none sm:rounded-full sm:px-2"
         )}
       >
         {pages.map((item) => (
           <p
-            className="Nav-item"
+            className={twMerge(
+              "Nav-item px-4 py-2 text-xs font-medium"
+            )}
             key={item}
             onClick={() => {
               const element = document.getElementById(`${item}Page`);

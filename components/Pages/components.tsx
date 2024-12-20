@@ -69,7 +69,7 @@ export function useScrollBreakpoint(breakpoint: number) {
     // console.log("breakpoint ", breakpoint);
     const listener = ((e: CustomEvent) => {
       // console.log('sy ', window.scrollY)
-      console.log("recieve scroll ", e)
+      // console.log("recieve scroll ", e)
       setScrolledPast(e.detail > breakpoint);
       // setScrolledPast(window.scrollY > breakpoint);
     }) as EventListener;

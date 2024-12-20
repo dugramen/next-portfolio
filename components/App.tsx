@@ -73,7 +73,7 @@ export default function App({ repos }) {
           // WebkitMaskImage: `linear-gradient(black, transparent)`,
         }}
         onScroll={(e) => {
-          console.log("scrolling ", e.currentTarget.scrollTop);
+          // console.log("scrolling ", e.currentTarget.scrollTop);
           const event = new CustomEvent("custom-scroll", {
             detail: e.currentTarget.scrollTop,
             bubbles: true,
@@ -108,13 +108,14 @@ function NavBar({ pages, scrollContainer }) {
 
       <div
         className={twMerge(
-          `NavItemsPanel items-center absolute top-full -translate-y-3`,
+          `NavItemsPanel items-center absolute top-full -translate-y-3 origin-top-right`,
           "flex flex-col",
           `backdrop-blur-sm bg-black/10 shadow-sm rounded-lg `,
-          "animate-[panel-out_.5s_forwards]",
+          // "animate-[panel-out_.5s_forwards_cubic-bezier(.3,2.0,.7,.7)]",
+          "animate-[panel-out_.15s_forwards_ease-out]",
           open &&
             `
-            animate-[panel-in_.5s_forwards]
+            animate-[panel-in_.5s_forwards_cubic-bezier(.3,2.0,.7,.7)]
           `,
           "sm:relative sm:flex sm:flex-row sm:top-auto sm:translate-y-0 sm:rounded-full sm:px-2 sm:scale-100 sm:animate-none"
         )}

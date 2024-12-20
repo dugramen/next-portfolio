@@ -66,13 +66,15 @@ export function Page(
 export function useScrollBreakpoint(breakpoint: number) {
   const [scrolledPast, setScrolledPast] = useState(false); 
   useEffect(() => {
-    console.log("breakpoint ", breakpoint);
-    const listener = () => {
+    // console.log("breakpoint ", breakpoint);
+    const listener = ((e: CustomEvent) => {
       // console.log('sy ', window.scrollY)
-      setScrolledPast(window.scrollY > breakpoint);
-    };
-    window.addEventListener("scroll", listener);
-    return () => window.removeEventListener("scroll", listener);
+      console.log("recieve scroll ", e)
+      setScrolledPast(e.detail > breakpoint);
+      // setScrolledPast(window.scrollY > breakpoint);
+    }) as EventListener;
+    window.addEventListener("custom-scroll", listener);
+    return () => window.removeEventListener("custom-scroll", listener);
   }, [breakpoint]);
 
   return scrolledPast;

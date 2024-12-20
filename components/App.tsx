@@ -21,7 +21,7 @@ export default function App({ repos }) {
   console.log({ atTop });
 
   return (
-    <div className={"App " + (atTop ? "scroll-top" : "scroll-not-top")}>
+    <div className={"App h-full " + (atTop ? "scroll-top" : "scroll-not-top")}>
       {/* <div
         className={twMerge("fixed inset-0 pointer-events-none")}
         style={{
@@ -65,12 +65,21 @@ export default function App({ repos }) {
       </div>
 
       <div
-        className="flex flex-col gap-4 p-0 "
+        className="flex flex-col gap-4 p-0 max-h-full"
         ref={containerRef}
         style={{
-          overflowY: "visible",
+          overflowY: "scroll",
+          maskImage: `linear-gradient(transparent 60px, black 120px)`,
+          // WebkitMaskImage: `linear-gradient(black, transparent)`,
         }}
-        // onScroll={handleScroll}
+        onScroll={(e) => {
+          console.log("scrolling ", e.currentTarget.scrollTop);
+          const event = new CustomEvent("custom-scroll", {
+            detail: e.currentTarget.scrollTop,
+            bubbles: true,
+          });
+          e.target.dispatchEvent(event);
+        }}
         // onResize={handleScroll}
       >
         <About />
@@ -86,14 +95,16 @@ function NavBar({ pages, scrollContainer }) {
   const [open, setOpen] = useState(false);
   return (
     <nav
-      className={`Navbar px-10 relative`}
+      className={`Navbar p-5 relative flex flex-row items-center `}
       style={{
         // transform: `translateY(${(1-topLerp) * window.innerHeight}px)`
         zIndex: 100,
       }}
     >
-      <p className="text-2xl text-red-900 font-bold mr-auto">Koliur Rahman</p>
-      <button className="nav-resume gradient-button">Resume</button>
+      <p className="text-2xl text-red-900 font-extrabold -m-5 p-5">
+        Koliur Rahman
+      </p>
+      <button className="nav-resume gradient-button ml-auto">Resume</button>
 
       <div
         className={twMerge(
@@ -101,7 +112,8 @@ function NavBar({ pages, scrollContainer }) {
           "flex flex-col",
           `backdrop-blur-sm bg-black/10 shadow-sm rounded-lg `,
           "animate-[panel-out_.5s_forwards]",
-          open && `
+          open &&
+            `
             animate-[panel-in_.5s_forwards]
           `,
           "sm:relative sm:flex sm:flex-row sm:top-auto sm:translate-y-0 sm:rounded-full sm:px-2 sm:scale-100 sm:animate-none"
@@ -109,9 +121,7 @@ function NavBar({ pages, scrollContainer }) {
       >
         {pages.map((item) => (
           <p
-            className={twMerge(
-              "Nav-item px-4 py-2 text-xs font-medium"
-            )}
+            className={twMerge("Nav-item px-4 py-2 text-xs font-medium")}
             key={item}
             onClick={() => {
               const element = document.getElementById(`${item}Page`);
@@ -131,7 +141,7 @@ function NavBar({ pages, scrollContainer }) {
         className="sm:hidden flex flex-col gap-1 ml-1"
         onClick={() => setOpen(!open)}
         onBlur={() => {
-          setOpen(false)
+          setOpen(false);
         }}
         tabIndex={0}
       >
@@ -139,11 +149,12 @@ function NavBar({ pages, scrollContainer }) {
           <div
             className={twMerge(
               "w-6 h-1 rounded-full bg-red-900 transition-transform duration-500 ease-in-out",
-              open && [
-                "rotate-45 translate-y-2", 
-                "-rotate-45", 
-                "-rotate-45 -translate-y-2"
-              ][i]
+              open &&
+                [
+                  "rotate-45 translate-y-2",
+                  "-rotate-45",
+                  "-rotate-45 -translate-y-2",
+                ][i]
             )}
             key={i}
           />

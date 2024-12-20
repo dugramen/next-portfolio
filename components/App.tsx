@@ -69,7 +69,9 @@ export default function App({ repos }) {
         ref={containerRef}
         style={{
           overflowY: "scroll",
-          maskImage: `linear-gradient(transparent 60px, black 120px)`,
+          // maskImage: `linear-gradient(transparent 60px, black 120px)`,
+
+          clipPath: "xywh(0px 72px 100% 100%)"
           // WebkitMaskImage: `linear-gradient(black, transparent)`,
         }}
         onScroll={(e) => {

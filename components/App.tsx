@@ -71,7 +71,7 @@ export default function App({ repos }) {
           overflowY: "scroll",
           // maskImage: `linear-gradient(transparent 60px, black 120px)`,
 
-          clipPath: "xywh(0px 72px 100% 100%)"
+          clipPath: "xywh(0px 64px 100% 100%)"
           // WebkitMaskImage: `linear-gradient(black, transparent)`,
         }}
         onScroll={(e) => {
@@ -97,13 +97,13 @@ function NavBar({ pages, scrollContainer }) {
   const [open, setOpen] = useState(false);
   return (
     <nav
-      className={`Navbar p-5 relative flex flex-row items-center `}
+      className={`Navbar p-5 relative flex flex-row items-start `}
       style={{
         // transform: `translateY(${(1-topLerp) * window.innerHeight}px)`
         zIndex: 100,
       }}
     >
-      <p className="text-2xl text-red-900 font-extrabold -m-5 p-5">
+      <p className="text-2xl text-red-900 font-extrabold -m-5 p-5 translate-y-[2px]">
         Koliur Rahman
       </p>
       <button className="nav-resume gradient-button ml-auto">Resume</button>

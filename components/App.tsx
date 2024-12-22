@@ -41,8 +41,6 @@ export default function App({ repos }) {
 
       {/* <div className='stationary'/> */}
 
-      <NavBar pages={pages} scrollContainer={containerRef.current} />
-
       <div
         className={twMerge(
           "fixed left-0 right-0 top-0 h-[100vh] -z-50 transition-all duration-700",
@@ -64,16 +62,9 @@ export default function App({ repos }) {
         </div>
       </div>
 
-      <div
-        className="flex flex-col gap-4 p-0 max-h-full"
+      <div 
+        className="flex flex-col h-full w-full overflow-y-scroll"
         ref={containerRef}
-        style={{
-          overflowY: "scroll",
-          // maskImage: `linear-gradient(transparent 60px, black 120px)`,
-
-          clipPath: "xywh(0px 64px 100% 100%)"
-          // WebkitMaskImage: `linear-gradient(black, transparent)`,
-        }}
         onScroll={(e) => {
           // console.log("scrolling ", e.currentTarget.scrollTop);
           const event = new CustomEvent("custom-scroll", {
@@ -82,13 +73,28 @@ export default function App({ repos }) {
           });
           e.target.dispatchEvent(event);
         }}
-        // onResize={handleScroll}
       >
-        <About />
-        <Skills />
-        <Projects repos={repos} />
-        <Contact />
+        <NavBar pages={pages} scrollContainer={containerRef.current} />
+
+        <div
+          className="flex flex-col gap-4 p-0 flex-1 min-w-0"
+          style={{
+            // overflowY: "scroll",
+            // maskImage: `linear-gradient(transparent 60px, black 120px)`,
+
+            // clipPath: "xywh(0px 64px 100% 100%)"
+            // WebkitMaskImage: `linear-gradient(black, transparent)`,
+          }}
+          
+          // onResize={handleScroll}
+        >
+          <About />
+          <Skills />
+          <Projects repos={repos} />
+          <Contact />
+        </div>
       </div>
+
     </div>
   );
 }
@@ -97,7 +103,7 @@ function NavBar({ pages, scrollContainer }) {
   const [open, setOpen] = useState(false);
   return (
     <nav
-      className={`Navbar p-5 relative flex flex-row items-start `}
+      className={`Navbar p-5 sticky top-0 flex flex-row items-start backdrop-blur-md`}
       style={{
         // transform: `translateY(${(1-topLerp) * window.innerHeight}px)`
         zIndex: 100,

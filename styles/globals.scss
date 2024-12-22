@@ -56,7 +56,10 @@ a {
   --site-offset-w: 0px;
   --navbar-color: hsla(0, 0%, 95%, 1);
   --button-color: hsla(0, 0%, 95%, 1);
-  --background-gradient: linear-gradient(#991b1b, #7f1d1d);
+  --background-gradient: linear-gradient(
+    #7f1d1d,
+    #991b1b 
+    );
   // --solid-color: desaturate(red, 10);
   // --button-color: black;
 }
@@ -292,19 +295,19 @@ button {
 // }
 
 .gradient-button {
-  background-image: linear-gradient(to right, $solid-color, $darker-color, $solid-color);
+  background-image: linear-gradient(to right, $darker-color, $solid-color, $darker-color);
   
   color: white;
   align-self: center;
   background-size: 200% auto;
-  background-position: left;
+  background-position: right;
   transition: .3s;
   padding: 6px 20px;
   // @apply text-sm;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   &:hover {
-    background-position: right;
+    background-position: left;
     // color: black;
   }
 }
@@ -317,7 +320,7 @@ button {
 
   color: white;
   
-  position: fixed;
+  // position: fixed;
   // inset: 0;
   top: 0;
   // right: 16px;

@@ -24,7 +24,7 @@ export default function About(props) {
       {/* <Three/> */}
 
       {started && (
-        <div className="text-wrapper flex flex-col items-center">
+        <div className="text-wrapper flex flex-col items-center -translate-y-20">
           <div className="flex flex-row text-xl ScrollView">
             <div className="animate-[fade-in-up_.5s_ease-out_.3s_both] ">
               Hello

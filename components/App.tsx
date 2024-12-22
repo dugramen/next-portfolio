@@ -103,7 +103,7 @@ function NavBar({ pages, scrollContainer }) {
   const [open, setOpen] = useState(false);
   return (
     <nav
-      className={`Navbar p-5 sticky top-0 flex flex-row items-start backdrop-blur-md`}
+      className={`Navbar p-5 sticky top-0 flex flex-row items-start backdrop-blur-sm`}
       style={{
         // transform: `translateY(${(1-topLerp) * window.innerHeight}px)`
         zIndex: 100,
@@ -118,7 +118,7 @@ function NavBar({ pages, scrollContainer }) {
         className={twMerge(
           `NavItemsPanel items-center absolute top-full -translate-y-3 origin-top-right`,
           "flex flex-col",
-          `backdrop-blur-sm bg-black/10 shadow-sm rounded-lg `,
+          `backdrop-blur- bg-black/10 shadow-sm rounded-lg `,
           // "animate-[panel-out_.5s_forwards_cubic-bezier(.3,2.0,.7,.7)]",
           "animate-[panel-out_.15s_forwards_ease-out]",
           open &&

@@ -61,10 +61,16 @@ a {
 }
 
 @mixin gradient-bg {
-  background: var(--background-gradient);
-  background-attachment: fixed;
-  background-position: 0 0;
-  background-size: 100%;
+  // background: var(--background-gradient);
+  // background: radial-gradient(circle, hsla(0, 0%, 95%), hsla(0, 0%, 55%));
+  background: linear-gradient(to left, hsla(0, 0%, 65%) 0%, hsla(0, 0%, 55%) 500px);
+  background-position: bottom right;
+  // background: linear-gradient(black, white, red);
+  // background-attachment: fixed;
+  // background-position: 0 0;
+  // background-position-x: 0px;
+  // background-position-y: 0px;
+  // background-size: 100%;
 }
 
 .GradientFg {
@@ -198,7 +204,7 @@ h1 {
   font-weight: 600;
   margin-bottom: 3rem;
   margin-top: 3rem;
-  @apply text-4xl opacity-80 font-bold ScrollView;
+  @apply text-2xl font-extrabold opacity-80 ScrollView;
   // color: hsl(0, 0%, 60%);
 }
 
@@ -718,6 +724,7 @@ button {
 
   .info-card {
     @apply ScrollView;
+    @include gradient-bg();
     padding: 1.75rem;
     display: flex;
     align-items: center;
@@ -728,14 +735,14 @@ button {
     max-width: 520px;
     transition: 0.3s;
     position: relative;
-    background-color: hsl(0, 0%, 0%, 0.1);
+    // background-color: hsl(0, 0%, 0%, 0.1);
     box-shadow: 0px 0px 10px -5px black;
 
     &::before {
       content: "";
       position: absolute;
       inset: 0;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(2px);
       z-index: -1;
 
       // @apply blur-md;
@@ -793,7 +800,7 @@ button {
       content: "";
       position: absolute;
       inset: 0;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(2px);
       z-index: -1;
 
       // @apply blur-md;
@@ -919,6 +926,7 @@ button {
 
     $project-size: 300px;
     .Project {
+      @include gradient-bg();
       // background-color: color(from black srgb r g b / .2);
       //   background-color: $debug-bg;
 
@@ -1007,12 +1015,12 @@ button {
         align-self: stretch;
         align-items: center;
         justify-content: center;
-        margin-bottom: $margin-bottom;
+        // margin-bottom: $margin-bottom;
         position: absolute;
-        bottom: 0;
+        bottom: 8px;
         gap: 4px;
 
-        transform: translateY(calc(100% + $margin-bottom));
+        transform: translateY(calc(100%));
         transition: 0.3s;
 
         // button {
@@ -1078,12 +1086,12 @@ button {
         // color: red;
   
         .img-container {
-          height: calc($project-size * 0.5 - 48px);
+          height: calc($project-size * 0.5 - 24px);
         }
         img {
           // transform: scale(0.8);
           // max-height: calc(100% - 48px);
-          // scale: 150%;
+          scale: 110%;
         }
         // .text-container {
         //   transform: translateY(-60px);

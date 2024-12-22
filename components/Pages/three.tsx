@@ -29,7 +29,7 @@ export function Three({
         {/* <pointLightHelper args={[]}/> */}
 
         {/* The cube geometry */}
-        <mesh
+        {/* <mesh
           // rotateX={Math.PI / 4}
           // rotateY={Math.PI / 4}
           position={[2, 2, 0]}
@@ -96,7 +96,7 @@ export function Three({
         >
           <boxGeometry args={[1, 1, 1]} />
           <meshStandardMaterial color="red" />
-        </mesh>
+        </mesh> */}
 
         {/* A ground plane to catch the shadows */}
         <mesh position={[0, 0, -0.5]} rotation={[0, 0, 0]} receiveShadow>

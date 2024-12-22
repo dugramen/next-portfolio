@@ -15,7 +15,7 @@ export default function Project(props) {
   }, []);
 
   return (
-    <div className="Project bg-black/10 ScrollView backdrop-blur-lg">
+    <div className="Project ScrollView">
       <a
         className="img-container"
         href={!props.isMobile ? repo.homepageUrl : undefined}
@@ -26,12 +26,12 @@ export default function Project(props) {
       </a>
 
       <a
-        className="text-container gap-4"
+        className="text-container gap-3"
         href={!props.isMobile ? repo.homepageUrl : undefined}
         target="_blank"
         rel="noreferrer"
       >
-        <h2 className="font-bold text-2xl line-clamp-1">
+        <h2 className="font-extrabold text-xl line-clamp-1">
           {props.title
             ?.replaceAll("-", " ")
             .split(" ")

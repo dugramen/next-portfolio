@@ -37,6 +37,7 @@ a {
   --navbar-color: hsla(0, 0%, 95%, 1);
   --button-color: hsla(0, 0%, 95%, 1);
   // --solid-color: desaturate(red, 10);
+  // --solid-color: desaturate(red, 10);
   // --button-color: black;
 }
 
@@ -91,6 +92,7 @@ textarea {
   border-radius: 12px;
   padding: 10px 16px;
   box-shadow: 0px 0px 10px 0px var(--navbar-color);
+  box-shadow: 0px 0px 10px 0px var(--navbar-color);
 }
 
 textarea {
@@ -113,6 +115,10 @@ h1 {
   flex-direction: column;
   gap: 20px;
   padding: 0px var(--site-offset-w);
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y proximity;
+  scroll-snap-stop: always;
   height: 100vh;
   overflow-y: scroll;
   scroll-snap-type: y proximity;
@@ -147,6 +153,18 @@ button {
 }
 
 .background {
+.App {
+  position: relative;
+  @keyframes fade-in {
+    0% {opacity: 0;}
+    100% {opacity: 100%;}
+  }
+  animation: fade-in .3s forwards;
+  // background: lighten($color: orange, $amount: 25);
+  // color: white;
+}
+
+.background {
   position: fixed;
   inset: 0;
   z-index: 15;
@@ -158,7 +176,32 @@ button {
   
   // &.top {
   // }
+  inset: 0;
+  z-index: 15;
+  background: linear-gradient(red, orange);
+  transition: .3s;
+  // height: var(--nav-height);
+  opacity: 0;
+  pointer-events: none;
+  
+  // &.top {
+  // }
   &.top {
+    height: 100%; 
+    opacity: 100%;
+  }
+}
+
+.gradient-button {
+  background-image: linear-gradient(to right, $solid-color, orange, $solid-color);
+  color: white;
+  align-self: center;
+  background-size: 200% auto;
+  background-position: left;
+  transition: .3s;
+  &:hover {
+    background-position: right;
+    // color: black;
     height: 100%; 
     opacity: 100%;
   }
@@ -198,7 +241,30 @@ button {
   // color: white;
 
   width: 100%;
+  z-index: 10;
+  background: var(--bg-color);
+  // opacity: 100%;
+  
+  position: fixed;
+  // inset: 0;
+  top: 0;
+  right: 16px;
+  // right: 16px;
+  // @at-root .scroll-top & {
+  //   position: relative;
+
+  //   // transform: translateY(100vh);
+  //   // opacity: 0;
+  // }
+
+  box-shadow: 0px 0px 15px 0px white;
+  // color: white;
+
+  width: 100%;
   height: var(--nav-height);
+  padding: 0 var(--site-offset-w);
+  margin: 0;
+
   padding: 0 var(--site-offset-w);
   margin: 0;
 
@@ -217,13 +283,53 @@ button {
     margin-right: 10px;
   }
   
+  align-items: center;
+  transition: .3s;
+  // gap: 10px;
+
+  // @at-root .scroll-top & {
+  //   height: 100%;
+  // }
+
+  .nav-resume {
+    margin-right: 10px;
+  }
+  
   .Nav-item,
   .name {
+    // height: 100%;
+    // margin: auto;
     // height: 100%;
     // margin: auto;
     color: var(--text-color);
     margin: 0;
     display: flex;
+    // align-items: center;
+    // color: white;
+  }
+  .Nav-item {
+    // padding: var(--nav-height) 20px;
+    padding: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: transparent;
+    position: relative;
+    &::before {
+      position: absolute;
+      bottom: 10px;
+      right: 10%;
+      width: 0;
+      height: 3px;
+      content: '';
+      background: linear-gradient($solid-color, orange);
+      transition: .3s;
+    }
+    &:hover {
+      color: $solid-color;
+      &::before {
+        width: 80%;
+      }
+    }
     // align-items: center;
     // color: white;
   }
@@ -256,6 +362,7 @@ button {
     font-weight: bold;
     font-size: large;
     color: $solid-color;
+    color: $solid-color;
   }
 }
 
@@ -265,10 +372,20 @@ button {
 
   // min-height: calc(100vh - var(--nav-height));
   min-height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
+  // min-height: calc(100vh - var(--nav-height));
+  min-height: 100vh;
   display: flex;
+  flex-shrink: 0;
   flex-shrink: 0;
   flex-direction: column;
   align-items: center;
+
+  h1 {
+    margin-top: calc(var(--nav-height) + 20px);
+  }
 
   h1 {
     margin-top: calc(var(--nav-height) + 20px);
@@ -320,11 +437,57 @@ button {
     }
   }
 
+  // color: white;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // padding-top: 25vh;
+
+  // position: fixed;
+  // inset: 0;
+  height: 100vh;
+  z-index: 15;
+  transition: .3s;
+  opacity: 0;
+
+  pointer-events: none;
+  // transform: translateY(-100%);
+  
+  @at-root .scroll-top & {
+    opacity: 100%;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  // margin: calc(0 - var(--nav-height));
+
+  // margin-top: 50%;
+  // transform: translateY(-50%);
+
+  .initial-headers {
+    margin-top: 30px;
+    // position: fixed;
+    // bottom: 40%;
+    // left: 50%;
+    // transform: translateX(-50%);
+    display: flex;
+    gap: 24px;
+    // color: black;
+    // font-weight: bold;
+    .header {
+      font-size: 1.2rem;
+    }
+  }
+
   .calls-to-action {
     display: flex;
     // display: none;
+    // display: none;
     gap: 30px;
     margin-top: 18px;
+    color: white;
     color: white;
 
     a {
@@ -334,8 +497,10 @@ button {
     button {
       border-radius: 30px;
       border: 2px solid white;
+      border: 2px solid white;
       padding: 8px 32px;
       background-color: transparent;
+      color: white;
       color: white;
       transition: 0.3s;
 
@@ -446,19 +611,63 @@ button {
     }
     
   }
+  margin-top: 40px;
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .info-card {
+    padding: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--navbar-color);
+    box-shadow: 0px 0px 5px var(--navbar-color);
+    width: 520px;
+    transition: .3s;
+    
+    // &:hover {
+    //   box-shadow: 0px 0px 5px 5px var(--navbar-color);
+    // }
+    
+    &.vertical {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    & > svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    p {
+      word-break: break-word;
+      margin: 0;
+    }
+    
+  }
 
   .skill-container {
+    $icon-size: 50px;
     $icon-size: 50px;
     $gap: 40px;
 
     height: 100%;
     align-self: center;
     align-items: flex-start;
+    align-items: flex-start;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     max-width: calc(5 * ($icon-size + $gap));
     justify-content: center;
+    // gap: $gap;
     // gap: $gap;
 
     .skill {
@@ -476,6 +685,7 @@ button {
       p {
         margin: 0px;
         font-size: 0.8rem;
+        // color: hsl(0, 0%, 50%);
         // color: hsl(0, 0%, 50%);
         transition-property: color;
         transition-duration: .3s;
@@ -523,6 +733,7 @@ button {
   $debug-bg: hsl(0, 0%, 95%);
   margin: 0px calc(var(--site-offset-w) * -1);
   margin-bottom: 20px;
+  margin-bottom: 20px;
   // background-color: $debug-bg;
 
   .projects-container {
@@ -533,7 +744,9 @@ button {
     align-items: stretch;
     justify-content: center;
     gap: 24px;
+    gap: 24px;
 
+    $card-color: var(--navbar-color);
     $card-color: var(--navbar-color);
 
     .Project {
@@ -555,6 +768,7 @@ button {
       // overflow-x: visible;
       position: relative;
       box-shadow: 0px 0px 10px $card-color;
+      box-shadow: 0px 0px 10px $card-color;
       // border: 1px solid black;
 
       .img-container {
@@ -564,19 +778,43 @@ button {
         display: flex;
         justify-content: center;
         
+        
         //   border-radius: 8px;
         // align-items: flex-start;
         // clip-path: inset(calc(50% - calc($project-size / 2.0)));
         // transition: .3s;
         z-index: 1;
         
+        
         img {
+          // box-shadow: inset 0px 0px 10px 5px black;
           // box-shadow: inset 0px 0px 10px 5px black;
           position: relative;
           z-index: -1;
           max-height: 100%;
           transform-origin: top;
           transition: transform 0.3s;
+        }
+      }
+      
+      .chips-container {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        .chip {
+          // margin-top: -15px;
+          // margin-bottom: -15px;
+          font-size: .7rem;
+          font-weight: bold;
+          color: black;
+          border-radius: 8px;
+          padding: 4px 14px;
+
+          color: white;
+          background: $solid-color;
+          & ::before {
+            content: '•';
+          }
         }
       }
       
@@ -607,6 +845,7 @@ button {
         transition: 0.3s;
         margin-bottom: 0;
 
+
       }
 
       .button-slider {
@@ -625,6 +864,14 @@ button {
 
         transform: translateY(calc(100% + $margin-bottom));
         transition: 0.3s;
+
+        // button {
+        //   width: 100%;
+        //   border-width: 2px;
+        //   border-style: solid;
+        //   border-color: var(--button-color);
+        // }
+        
 
         // button {
         //   width: 100%;
@@ -655,11 +902,33 @@ button {
         }
         // .github {
         // }
+          margin-top: 4px;
+          padding: 10px 32px;
+          // border: 3px solid orangered;
+          // box-shadow: 2px 2px 3px 2px gray;
+          
+          // box-sizing: border-box; 
+          // border-style: solid;
+          // transition: 0.3s;
+          // border-width: 2px;
+          // border-color: black;
+          // color: black;
+          // background-color: transparent;
+          
+          // &:hover {
+          //   color: white;
+          //   background-color: red;
+          //   border-color: red;
+          // }
+        }
+        // .github {
+        // }
       }
 
       &:hover {
         // background-color: hsla(0, 0%, 0%, .1);
         cursor: pointer;
+        // color: red;
         // color: red;
 
         img {
@@ -682,6 +951,10 @@ button {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    margin: 20px;
+    margin-top: 10px;
     width: 100%;
     max-width: 100%;
     margin: 20px;
@@ -710,12 +983,17 @@ button {
   .content {
     width: 100%;
     
+    
     gap: 20px;
+    display: flex;
+    flex-direction: column;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: min-content;
+    width: min-content;
   }
+
 
   .contact-info {
     display: grid;
@@ -723,8 +1001,13 @@ button {
     gap: 8px;
     align-items: center;
     // width: min-content;
+    // width: min-content;
     height: min-content;
     justify-self: center;
+
+    .icon {
+      justify-self: end;
+    }
 
     .icon {
       justify-self: end;

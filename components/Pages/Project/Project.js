@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Project(props) {
   const repo = props.repo;
-  const [focused, setFocused] = React.useState(false);
+  // const [focused, setFocused] = React.useState(false);
   const [isTouchDevice, setIsTouchDevice] = React.useState(false);
 
   React.useEffect(() => {
@@ -31,7 +31,7 @@ export default function Project(props) {
         target="_blank"
         rel="noreferrer"
       >
-        <h2 className="font-bold text-2xl">
+        <h2 className="font-bold text-2xl line-clamp-1">
           {props.title
             ?.replaceAll("-", " ")
             .split(" ")

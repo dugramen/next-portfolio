@@ -761,6 +761,7 @@ button {
       flex-direction: column;
       gap: 8px;
       width: calc($project-size + $padding * 2);
+      height: 328px;
       overflow: hidden;
       // overflow-y: hidden;
       // overflow-x: visible;
@@ -780,13 +781,15 @@ button {
         // clip-path: inset(calc(50% - calc($project-size / 2.0)));
         // transition: .3s;
         z-index: 1;
-        // transition: all .3s;
+        transition: all .3s;
         
         img {
           // box-shadow: inset 0px 0px 10px 5px black;
+          width: $project-size;
+          height: calc($project-size * 0.5);
           position: relative;
           z-index: -1;
-          max-height: 100%;
+          // max-height: 100%;
           transform-origin: top;
           transition: all 0.3s;
         }
@@ -877,13 +880,17 @@ button {
         cursor: pointer;
         // color: red;
 
+        .img-container {
+          height: calc($project-size * 0.5 - 48px);
+        }
         img {
           // transform: scale(0.8);
-          max-height: calc(100% - 48px);
+          // max-height: calc(100% - 48px);
+          // scale: 150%;
         }
-        .text-container {
-          transform: translateY(-60px);
-        }
+        // .text-container {
+        //   transform: translateY(-60px);
+        // }
         .button-slider {
           transform: translateY(0);
         }

@@ -15,7 +15,7 @@ export default function Project(props) {
   }, []);
 
   return (
-    <div className="Project bg-black/10 ScrollView">
+    <div className="Project bg-black/10 ScrollView backdrop-blur-lg">
       <a
         className="img-container"
         href={!props.isMobile ? repo.homepageUrl : undefined}

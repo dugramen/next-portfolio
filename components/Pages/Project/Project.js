@@ -56,7 +56,7 @@ export default function Project(props) {
 
       <div className="button-slider">
         <a className="github" href={repo.url} target="_blank" rel="noreferrer">
-          <button className="gradient-button">GitHub</button>
+          <button className="gradient-button py-1">GitHub</button>
         </a>
 
         {props.isMobile && (
@@ -66,7 +66,7 @@ export default function Project(props) {
             target="_blank"
             rel="noreferrer"
           >
-            <button className="gradient-button">Try out</button>
+            <button className="gradient-button py-1">Try out</button>
           </a>
         )}
       </div>

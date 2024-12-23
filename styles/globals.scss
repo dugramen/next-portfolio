@@ -63,7 +63,7 @@ a {
 @mixin gradient-bg {
   // background: var(--background-gradient);
   // background: radial-gradient(circle, hsla(0, 0%, 95%), hsla(0, 0%, 55%));
-  background: linear-gradient(to left, hsla(0, 0%, 65%) 0%, hsla(0, 0%, 55%) 500px);
+  background: linear-gradient(to left, hsla(0, 0%, 75%) 0%, hsla(0, 0%, 65%) 800px);
   background-position: bottom right;
   // background: linear-gradient(black, white, red);
   // background-attachment: fixed;
@@ -722,53 +722,53 @@ button {
     padding: 0px 16px;
   }
 
-  .info-card {
-    @apply ScrollView;
-    @include gradient-bg();
-    padding: 1.75rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    // background-color: var(--navbar-color);
-    color: black;
-    // background-color: hsla(0, 100%, 20%, .85);
-    max-width: 520px;
-    transition: 0.3s;
-    position: relative;
-    // background-color: hsl(0, 0%, 0%, 0.1);
-    box-shadow: 0px 0px 10px -5px black;
+  // .info-card {
+  //   @apply ScrollView;
+  //   @include gradient-bg();
+  //   padding: 1.75rem;
+  //   display: flex;
+  //   align-items: center;
+  //   gap: 1rem;
+  //   // background-color: var(--navbar-color);
+  //   color: black;
+  //   // background-color: hsla(0, 100%, 20%, .85);
+  //   max-width: 520px;
+  //   transition: 0.3s;
+  //   position: relative;
+  //   // background-color: hsl(0, 0%, 0%, 0.1);
+  //   // box-shadow: 0px 0px 10px -5px black;
 
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      backdrop-filter: blur(2px);
-      z-index: -1;
+  //   &::before {
+  //     content: "";
+  //     position: absolute;
+  //     inset: 0;
+  //     // backdrop-filter: blur(2px);
+  //     z-index: -1;
 
-      // @apply blur-md;
-    }
+  //     // @apply blur-md;
+  //   }
 
-    // &:hover {
-    //   box-shadow: 0px 0px 5px 5px var(--navbar-color);
-    // }
+  //   // &:hover {
+  //   //   box-shadow: 0px 0px 5px 5px var(--navbar-color);
+  //   // }
 
-    &.vertical {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
+  //   &.vertical {
+  //     display: flex;
+  //     flex-direction: column;
+  //     align-items: center;
+  //     text-align: center;
+  //   }
 
-    & > svg {
-      width: 40px;
-      height: 40px;
-    }
+  //   & > svg {
+  //     width: 40px;
+  //     height: 40px;
+  //   }
 
-    p {
-      word-break: break-word;
-      margin: 0;
-    }
-  }
+  //   p {
+  //     word-break: break-word;
+  //     margin: 0;
+  //   }
+  // }
   margin-top: 40px;
 
   .card-container {
@@ -782,7 +782,11 @@ button {
   }
 
   .info-card {
-    @apply ScrollView;
+    @apply ScrollView rounded-lg text-base font-normal;
+    background: black;
+    opacity: 1;
+    // @include gradient-bg();
+    background: hsla(0, 0%, 70%);
     padding: 1.75rem;
     display: flex;
     align-items: center;
@@ -791,16 +795,17 @@ button {
     color: black;
     // background-color: hsla(0, 100%, 20%, .85);
     max-width: 520px;
+    
     transition: 0.3s;
     position: relative;
-    background-color: hsl(0, 0%, 0%, 0.1);
+    // background-color: hsl(0, 0%, 0%, 0.1);
     box-shadow: 0px 0px 10px -5px black;
 
     &::before {
       content: "";
       position: absolute;
       inset: 0;
-      backdrop-filter: blur(2px);
+      // backdrop-filter: blur(2px);
       z-index: -1;
 
       // @apply blur-md;
@@ -1018,7 +1023,7 @@ button {
         // margin-bottom: $margin-bottom;
         position: absolute;
         bottom: 8px;
-        gap: 4px;
+        gap: 16px;
 
         transform: translateY(calc(100%));
         transition: 0.3s;
@@ -1086,7 +1091,7 @@ button {
         // color: red;
   
         .img-container {
-          height: calc($project-size * 0.5 - 24px);
+          height: calc($project-size * 0.5 - 32px);
         }
         img {
           // transform: scale(0.8);

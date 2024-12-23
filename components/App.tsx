@@ -47,7 +47,7 @@ export default function App({ repos }) {
           atTop && "duration-300"
         )}
         style={{
-          filter: atTop ? "" : "brightness(1)",
+          filter: atTop ? "" : "brightness(1.)",
         }}
       >
         <div
@@ -62,30 +62,28 @@ export default function App({ repos }) {
         </div>
       </div>
 
-      <div 
-        className="flex flex-col h-full w-full overflow-y-scroll"
-        ref={containerRef}
-        onScroll={(e) => {
-          // console.log("scrolling ", e.currentTarget.scrollTop);
-          const event = new CustomEvent("custom-scroll", {
-            detail: e.currentTarget.scrollTop,
-            bubbles: true,
-          });
-          e.target.dispatchEvent(event);
-        }}
-      >
+      <div className="flex flex-col h-full w-full overflow-y-scroll--">
         <NavBar pages={pages} scrollContainer={containerRef.current} />
 
         <div
           className="flex flex-col gap-4 p-0 flex-1 min-w-0"
+          ref={containerRef}
+          onScroll={(e) => {
+            // console.log("scrolling ", e.currentTarget.scrollTop);
+            const event = new CustomEvent("custom-scroll", {
+              detail: e.currentTarget.scrollTop,
+              bubbles: true,
+            });
+            e.target.dispatchEvent(event);
+          }}
           style={{
-            // overflowY: "scroll",
+            overflowY: "scroll",
             // maskImage: `linear-gradient(transparent 60px, black 120px)`,
 
             // clipPath: "xywh(0px 64px 100% 100%)"
             // WebkitMaskImage: `linear-gradient(black, transparent)`,
           }}
-          
+
           // onResize={handleScroll}
         >
           <About />
@@ -94,7 +92,6 @@ export default function App({ repos }) {
           <Contact />
         </div>
       </div>
-
     </div>
   );
 }
@@ -109,7 +106,7 @@ function NavBar({ pages, scrollContainer }) {
         zIndex: 100,
       }}
     >
-      <p className="text-2xl text-red-900 font-extrabold -m-5 p-5 translate-y-[2px]">
+      <p className="text-lg text-red-900 font-black -m-5 p-5 translate-y-[2px]">
         Koliur Rahman
       </p>
       <button className="nav-resume gradient-button ml-auto">Resume</button>
@@ -118,7 +115,7 @@ function NavBar({ pages, scrollContainer }) {
         className={twMerge(
           `NavItemsPanel items-center absolute top-full -translate-y-3 origin-top-right`,
           "flex flex-col",
-          `backdrop-blur- bg-black/10 shadow-sm rounded-lg `,
+          `bg-neutral-400 rounded-lg `,
           // "animate-[panel-out_.5s_forwards_cubic-bezier(.3,2.0,.7,.7)]",
           "animate-[panel-out_.15s_forwards_ease-out]",
           open &&
@@ -127,6 +124,9 @@ function NavBar({ pages, scrollContainer }) {
           `,
           "sm:relative sm:flex sm:flex-row sm:top-auto sm:translate-y-0 sm:rounded-full sm:px-2 sm:scale-100 sm:animate-none"
         )}
+        style={{
+          boxShadow: '0px 0px 10px -5px black'
+        }}
       >
         {pages.map((item) => (
           <p

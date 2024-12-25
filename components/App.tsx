@@ -120,7 +120,7 @@ function NavBar({ pages, scrollContainer }) {
           "animate-[panel-out_.15s_forwards_ease-out]",
           open &&
             `
-            animate-[panel-in_.5s_forwards_cubic-bezier(.3,2.0,.7,.7)]
+            animate-[panel-in_.5s_forwards_cubic-bezier(.3,2.0,.6,.8)]
           `,
           "sm:relative sm:flex sm:flex-row sm:top-auto sm:translate-y-0 sm:rounded-full sm:px-2 sm:scale-100 sm:animate-none"
         )}

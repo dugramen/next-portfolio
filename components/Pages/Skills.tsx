@@ -110,7 +110,7 @@ export default function Skills(props) {
 
   return (
     <Page className="SkillPage">
-      <h1 id="SkillsPage">Skills</h1>
+      <h1 id="SkillsHeader">Skills</h1>
 
       <div className="card-container">
         <div className="info-card">

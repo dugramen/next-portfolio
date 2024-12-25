@@ -96,7 +96,13 @@ export default function App({ repos }) {
   );
 }
 
-function NavBar({ pages, scrollContainer }) {
+function NavBar({
+  pages,
+  scrollContainer,
+}: {
+  pages;
+  scrollContainer: HTMLDivElement | null;
+}) {
   const [open, setOpen] = useState(false);
   return (
     <nav
@@ -125,7 +131,7 @@ function NavBar({ pages, scrollContainer }) {
           "sm:relative sm:flex sm:flex-row sm:top-auto sm:translate-y-0 sm:rounded-full sm:px-2 sm:scale-100 sm:animate-none"
         )}
         style={{
-          boxShadow: '0px 0px 10px -5px black'
+          boxShadow: "0px 0px 10px -5px black",
         }}
       >
         {pages.map((item) => (
@@ -133,10 +139,20 @@ function NavBar({ pages, scrollContainer }) {
             className={twMerge("Nav-item px-4 py-2 text-xs font-medium")}
             key={item}
             onClick={() => {
-              const element = document.getElementById(`${item}Page`);
-              if (element) {
+              const element = document.getElementById(`${item}Header`);
+              if (element && scrollContainer) {
+                // const scrollTop = scrollContainer?.scrollTop;
+                // const elTop = element.offsetTop;
+                const elTop = element.getBoundingClientRect().top;
+                let top =
+                  scrollContainer?.scrollTop +
+                  (elTop > 0 ? elTop - window.innerHeight / 2.0 : elTop) -
+                  scrollContainer?.offsetTop;
+                // console.log(scrollTop, elTop, top);
+                
                 scrollContainer?.scrollTo?.({
-                  top: element.offsetTop - 100,
+                  // top: element.offsetTop - 100,
+                  top,
                   behavior: "smooth",
                 });
               }

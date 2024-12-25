@@ -21,7 +21,7 @@ export default function ContactPage(props) {
 
   return (
     <Page className="ContactPage" id="ContactPage">
-      <h1>Contact</h1>
+      <h1 id="ContactHeader">Contact</h1>
       <div className="content">
         <div className="contact-info">
           {[

@@ -20,7 +20,7 @@ export default function Projects(props) {
 
   return (
     <Page className={"ProjectsPage"} id="PortfolioPage">
-      <h1>Portfolio</h1>
+      <h1 id="PortfolioHeader">Portfolio</h1>
 
       <div className="projects-container max-w-[1000px]">
         {props.repos

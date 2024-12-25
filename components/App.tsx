@@ -66,7 +66,7 @@ export default function App({ repos }) {
         <NavBar pages={pages} scrollContainer={containerRef.current} />
 
         <div
-          className="flex flex-col gap-4 p-0 flex-1 min-w-0"
+          className="flex flex-col gap-4 p-0 flex-1 min-w-0 NoScroll"
           ref={containerRef}
           onScroll={(e) => {
             // console.log("scrolling ", e.currentTarget.scrollTop);
@@ -100,7 +100,7 @@ function NavBar({ pages, scrollContainer }) {
   const [open, setOpen] = useState(false);
   return (
     <nav
-      className={`Navbar p-5 sticky top-0 flex flex-row items-start backdrop-blur-sm`}
+      className={`Navbar p-5 sticky top-0 flex flex-row items-start`}
       style={{
         // transform: `translateY(${(1-topLerp) * window.innerHeight}px)`
         zIndex: 100,

@@ -51,6 +51,7 @@ export default function ContactPage(props) {
               value={formData.name}
               type="text"
               onChange={handleChange}
+              id="EmailName"
             />
           </div>
 
@@ -61,6 +62,7 @@ export default function ContactPage(props) {
               type={"email"}
               value={formData.email}
               onChange={handleChange}
+              id="EmailEmail"
             />
           </div>
 
@@ -77,10 +79,10 @@ export default function ContactPage(props) {
           <button
             className="submit-button gradient-button"
             onClick={(e) => {
-              e.preventDefault();
+              // e.preventDefault();
               emailjs
                 .send(
-                  "service_d059d39",
+                  "service_tfyur9m",
                   "template_c477dlr",
                   formData,
                   "bm1VLqjOUpOWDi8FS"

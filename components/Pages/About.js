@@ -1,7 +1,5 @@
-import { Canvas } from "@react-three/fiber";
 import React, { Children, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { Three } from "./three";
 
 export default function About(props) {
   console.log("about rerender");

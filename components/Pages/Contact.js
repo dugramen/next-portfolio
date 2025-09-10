@@ -1,9 +1,7 @@
 import React from "react";
 import emailjs from "emailjs-com";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { Page } from "./components";
+import { FaEnvelope, FaGithub, FaPhone } from "react-icons/fa";
 
 export default function ContactPage(props) {
   const [formData, setFormData] = React.useState({
@@ -20,24 +18,32 @@ export default function ContactPage(props) {
   };
 
   return (
-    <Page className="ContactPage" id="ContactPage">
+    <Page className="ContactPage justify-center" id="ContactPage">
       <h1 id="ContactHeader">Contact</h1>
       <div className="content">
         <div className="contact-info">
           {[
-            ["Email", `-mailto:koliur.rahman@my.liu.edu`, faEnvelope],
-            ["Phone", `-tel:516-888-9701`, faPhone],
-            ["GitHub", "https://github.com/dugramen", faGithub],
+            [
+              "Email",
+              `-mailto:koliurrahman123@gmail.com`,
+              <FaEnvelope className="icon" />,
+            ],
+            ["Phone", `-tel:516-888-9701`, <FaPhone className="icon" />],
+            [
+              "GitHub",
+              "https://github.com/dugramen",
+              <FaGithub className="icon" />,
+            ],
           ].map(([label, link, icon]) => (
             <React.Fragment key={label}>
-              <FontAwesomeIcon icon={icon} className="icon" />
+              {icon}
               <div>{label}</div>
               <a
                 href={link.startsWith("-") ? link.replace("-", "") : link}
                 target="_blank"
                 rel="noreferrer"
               >
-                {link.startsWith("-") ? link.split(":").at(-1) : link}
+                {link?.startsWith("-") ? link?.split(":").at(-1) : link}
               </a>
             </React.Fragment>
           ))}

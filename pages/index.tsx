@@ -4,7 +4,7 @@ import App from '../components/App';
 export const GitHubDataContext = React.createContext(null)
 
 export default function Home(props) {
-  const repos = props?.repos?.data?.user?.repositories?.nodes
+  const repos = props?.repos?.data?.user?.pinnedItems?.nodes
 
   return <GitHubDataContext.Provider value={repos}>
     <App
@@ -17,34 +17,28 @@ export async function getStaticProps() {
   const query = `
   {
     user(login: "dugramen") {
-      repositories(first: 20, privacy: PUBLIC) {
-        nodes {
-          name
-          openGraphImageUrl
-          description
-          homepageUrl
-          url
-          languages(first: 10) {
-            nodes {
-              name
-              color
-            }
-          }
-          repositoryTopics(first: 10) {
-            nodes {
-              topic {
-                name
-              }
-            }
-          }
-          id
-        }
-      }
       pinnedItems(first: 10) {
         nodes {
           ... on Repository {
             id
             name
+            openGraphImageUrl
+            description
+            homepageUrl
+            url
+            repositoryTopics(first: 10) {
+              nodes {
+                topic {
+                  name
+                }
+              }
+            }
+            languages(first: 10) {
+              nodes {
+                name
+                color
+              }
+            }
           }
         }
       }

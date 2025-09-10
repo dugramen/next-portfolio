@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 
 export default function Project(props) {
   const repo = props.repo;
@@ -15,14 +14,14 @@ export default function Project(props) {
   }, []);
 
   return (
-    <div className="Project ScrollView">
+    <div className="Project ScrollView group">
       <a
         className="img-container"
         href={!props.isMobile ? repo.homepageUrl : undefined}
         target="_blank"
         rel="noreferrer"
       >
-        <img src={props.src} alt="" />
+        <img src={props.src} alt="" className="group-hover:-translate-y-5" />
       </a>
 
       <a

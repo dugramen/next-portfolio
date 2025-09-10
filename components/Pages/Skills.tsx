@@ -1,25 +1,7 @@
 import { ComponentProps, useState, useEffect } from "react";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGamepad,
-  faGraduationCap,
-  faCode,
-} from "@fortawesome/free-solid-svg-icons";
-import { useInView } from "react-intersection-observer";
-import { twMerge } from "tailwind-merge";
 import { Page } from "./components";
-
-function injectStyle(style) {
-  const styleElement = document.createElement("style");
-  let styleSheet: CSSStyleSheet | null = null;
-
-  document.head.appendChild(styleElement);
-
-  styleSheet = styleElement.sheet;
-
-  styleSheet?.insertRule(style, styleSheet.cssRules.length);
-}
+import { FaCode, FaGamepad, FaGraduationCap } from "react-icons/fa";
 
 function Icon({ name, path }) {
   const [mousePos, setMousePos] = useState([0, 0, null]);
@@ -41,7 +23,7 @@ function Icon({ name, path }) {
 
   return (
     <div
-      className="skill"
+      className="skill relative flex flex-col items-center group"
       onMouseEnter={(e) => {
         const { top, left } = e.currentTarget.getBoundingClientRect();
         setMousePos([e.clientX - left, e.clientY - top, name]);
@@ -52,7 +34,7 @@ function Icon({ name, path }) {
         setMousePos([e.clientX - left, e.clientY - top, null]);
       }}
     >
-      <div className="skill-icon">
+      <div className="skill-icon transition-transform duration-300 group-hover:-translate-y-3" style={{}}>
         <Image
           className="underlay"
           src={path}
@@ -75,6 +57,11 @@ function Icon({ name, path }) {
                 : clip,
           }}
         />
+      </div>
+
+      <div className="text-xs font-bold transition-all duration-300 absolute bottom-2 opacity-0 scale-50
+        group-hover:opacity-100 group-hover:translate-y-full group-hover:scale-100">
+        {name}
       </div>
 
       {/* <p>
@@ -114,17 +101,17 @@ export default function Skills(props) {
 
       <div className="card-container">
         <div className="info-card">
-          <FontAwesomeIcon icon={faGraduationCap} />
+          <FaGraduationCap className="min-w-10" />
           <p>
-            Hi, I&apos;m Koliur Rahman, a recent Computer Science graduate from
-            LIU Brooklyn. <br />
+            Hi, I&apos;m Koliur Rahman, a Computer Science graduate from LIU
+            Brooklyn. <br />
           </p>
         </div>
 
         <div className="info-card">
-          <FontAwesomeIcon icon={faCode} />
+          <FaCode className="min-w-10" />
           <p>
-            {`I've been programming for several years, with a recent focus on web development. 
+            {`I've been programming for several years, with a focus on web & game UI. 
                     I build and maintain several projects to constantly improve my front-end skills.
                     `}
             {/* I&apos;ve been programming for 4-5 years now, and have focused my last year on web development.
@@ -133,12 +120,12 @@ export default function Skills(props) {
         </div>
 
         <div className="info-card">
-          <FontAwesomeIcon icon={faGamepad} className="icon" />
+          <FaGamepad className="min-w-10" />
 
           <p>
             {`
-                            I also do game and engine development.
-                            Recently I've been applying the skills I learn from web development, to build better UI tools for the Godot game engine.
+                            I'm also an open source contributor to the Godot Game Engine.
+                            I build plugins and contribute code to improve the Editor UI and UX.
                         `}
             {/* I love video games. 
                         My favorites are platformers and RPGs.

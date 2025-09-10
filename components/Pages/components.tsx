@@ -10,7 +10,7 @@ import {
 import { useInView } from "react-intersection-observer";
 import { twMerge } from "tailwind-merge";
 import { useWindowScroll } from "@uidotdev/usehooks";
-import { ScrollBreakpoint } from "../App";
+import { ScrollBreakpoint } from "../AppLayout";
 
 export function Page(
   p: ComponentProps<"div"> & { inner?: ComponentProps<"div"> }
@@ -52,7 +52,9 @@ export function Page(
         {...p.inner}
         className={twMerge(
           "flex flex-col items-center gap-0",
+          // "transition-all duration-500 translate-y-[50vh]",
           "transition-all duration-500",
+          // inView && "translate-y-0",
           inView && "-translate-y-[50vh]",
           p.inner?.className
         )}

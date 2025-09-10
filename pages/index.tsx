@@ -1,5 +1,5 @@
 import React from 'react'
-import App from '../components/App';
+import { AppLayout } from '../components/AppLayout';
 
 export const GitHubDataContext = React.createContext(null)
 
@@ -7,7 +7,7 @@ export default function Home(props) {
   const repos = props?.repos?.data?.user?.pinnedItems?.nodes
 
   return <GitHubDataContext.Provider value={repos}>
-    <App
+    <AppLayout
       repos={repos}
     />
   </GitHubDataContext.Provider>

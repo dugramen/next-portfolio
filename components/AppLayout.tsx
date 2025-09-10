@@ -46,31 +46,6 @@ export function AppLayout({ repos }) {
               "radial-gradient(circle farthest-side at center , rgba(150, 0, 0, 1), rgba(50, 0, 0, 1))",
           }}
         ></div>
-        {Array(0)
-          .fill(0)
-          .map(() => {
-            let [x, y, r] = useMemo(
-              () => [Math.random(), Math.random(), Math.random()],
-              []
-            );
-            r = r * 300 + 100;
-            x *= 100;
-            y *= 100;
-            return (
-              <div
-                className="rounded-full absolute bg-black/5"
-                style={{
-                  width: r,
-                  height: r,
-                  left: `${x}%`,
-                  top: `${y}%`,
-                  transform: "translate(-50%, -50%)",
-                  backgroundImage:
-                    "radial-gradient(transparent, rgba(0,0,0,.5))",
-                }}
-              ></div>
-            );
-          })}
       </div>
 
       <div className="flex flex-col h-full w-full overflow-y-scroll--">

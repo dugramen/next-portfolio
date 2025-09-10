@@ -26,13 +26,17 @@ export default function ContactPage(props) {
             [
               "Email",
               `-mailto:koliurrahman123@gmail.com`,
-              <FaEnvelope className="icon" />,
+              <FaEnvelope className="icon" key={"email"} />,
             ],
-            ["Phone", `-tel:516-888-9701`, <FaPhone className="icon" />],
+            [
+              "Phone",
+              `-tel:516-888-9701`,
+              <FaPhone className="icon" key={"ph"} />,
+            ],
             [
               "GitHub",
               "https://github.com/dugramen",
-              <FaGithub className="icon" />,
+              <FaGithub className="icon" key={"gh"} />,
             ],
           ].map(([label, link, icon]) => (
             <React.Fragment key={label}>

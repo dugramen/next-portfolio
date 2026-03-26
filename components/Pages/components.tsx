@@ -51,7 +51,7 @@ export function Page(
       <div
         {...p.inner}
         className={twMerge(
-          "flex flex-col items-center gap-0",
+          "flex flex-col items-center gap-0 min-h-0 flex-1",
           // "transition-all duration-500 translate-y-[50vh]",
           "transition-all duration-500",
           // inView && "translate-y-0",
@@ -72,11 +72,14 @@ export function useScrollBreakpoint(breakpoint: number) {
     const listener = ((e: CustomEvent) => {
       // console.log('sy ', window.scrollY)
       // console.log("recieve scroll ", e)
-      setScrolledPast(e.detail > breakpoint);
-      // setScrolledPast(window.scrollY > breakpoint);
+
+      // setScrolledPast(e.detail > breakpoint);
+      setScrolledPast(window.scrollY > breakpoint);
     }) as EventListener;
-    window.addEventListener("custom-scroll", listener);
-    return () => window.removeEventListener("custom-scroll", listener);
+    window.addEventListener("scroll", listener);
+    return () => window.removeEventListener("scroll", listener);
+    // window.addEventListener("custom-scroll", listener);
+    // return () => window.removeEventListener("custom-scroll", listener);
   }, [breakpoint]);
 
   return scrolledPast;

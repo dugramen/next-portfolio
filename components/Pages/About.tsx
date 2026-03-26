@@ -1,10 +1,22 @@
 import React, { Children, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { useScrollBreakpoint } from "./components";
+import { ScrollBreakpoint } from "../AppLayout";
 
 export default function About(props) {
   console.log("about rerender");
 
   const [started, setStarted] = useState(false);
+  // const [atTop, setAtTop] = useState(true);
+  const atTop = !useScrollBreakpoint(ScrollBreakpoint);
+
+  // useEffect(() => {
+  //   const listener = ((e: CustomEvent) => {
+  //     setAtTop(e.detail <= ScrollBreakpoint);
+  //   }) as EventListener;
+  //   window.addEventListener("custom-scroll", listener);
+  //   return () => window.removeEventListener("custom-scroll", listener);
+  // }, []);
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -16,13 +28,41 @@ export default function About(props) {
   }, []);
 
   return (
-    <div className="AboutPage Page relative p-0 " style={{ zIndex: 20 }}>
+    <div
+      className="AboutPage Page p-0 "
+      style={{ zIndex: 20, transform: "none" }}
+    >
       {/* <div className={`background bg-gradient`} /> */}
 
       {/* <Three/> */}
 
       {started && (
-        <div className="text-wrapper flex flex-col items-center -translate-y-20">
+        <div
+          className={twMerge(
+            "text-wrapper flex flex-col items-center justify-center pointer-events-auto",
+            !atTop && "pointer-events-none"
+          )}
+          // onWheel={(e) => {
+          //   console.log(e.deltaY);
+          //   if (e.deltaY > 0) {
+          //     setAtTop(false);
+          //     document
+          //       .getElementById("scroll-container")
+          //       ?.scrollBy({ top: e.deltaY });
+          //     // const event = new CustomEvent("custom-scroll", {
+          //     //   detail: e.currentTarget.scrollTop,
+          //     //   bubbles: true,
+          //     // });
+          //     // e.target.dispatchEvent(event);
+          //   }
+          // }}
+          // onClick={() => {
+          //   setAtTop(false);
+          //   document
+          //       .getElementById("scroll-container")
+          //       ?.scrollBy({ top: 100 });
+          // }}
+        >
           <div className="flex flex-row text-xl ScrollView">
             <div className="animate-[fade-in-up_.5s_ease-out_.3s_both] ">
               Hello
@@ -74,7 +114,7 @@ export default function About(props) {
                 animationDelay: "2.7s",
               }}
               onClick={() => {
-                document.getElementById("ContactPage").scrollIntoView();
+                document.getElementById("ContactPage")?.scrollIntoView();
               }}
             >
               Contact

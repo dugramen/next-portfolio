@@ -110,7 +110,8 @@ export default function About(props) {
               gap: "16px",
             }}
           >
-            <a href="/resume.pdf" download="resume.pdf">
+            {/* <a href="/resume.pdf" download="resume.pdf"> */}
+            <a href="https://drive.google.com/file/d/12ecqEhloC4Po-5auHFOmKznScKvYkSV1/view" target="_blank" rel="noreferrer">
               <button>Resume</button>
             </a>
             <button

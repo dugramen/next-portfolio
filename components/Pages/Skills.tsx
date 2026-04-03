@@ -101,7 +101,7 @@ export default function Skills(props) {
   // const {ref, inView} = useInView({threshold: .25});
 
   return (
-    <Page className="SkillPage">
+    <Page className="SkillPage" id="SkillsPage">
       <h1 id="SkillsHeader">Skills</h1>
 
       <div

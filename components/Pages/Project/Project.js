@@ -44,7 +44,7 @@ export default function Project(props) {
           target="_blank"
           rel="noreferrer"
         >
-          <h2 className="font-extrabold text-black/75 text-3xl line-clamp-1 mb-2">
+          <h2 className="font-extrabold text-black/75 text-3xl line-clamp-1 mb-1">
             {props.title
               ?.replaceAll("-", " ")
               .split(" ")
@@ -52,7 +52,7 @@ export default function Project(props) {
               .join(" ")}
           </h2>
 
-          <p className="text-sm opacity-90">{props.description}</p>
+          <p className="text-sm font-medium opacity-90 mb-0">{props.description}</p>
         </a>
 
         <div className="mt-auto flex flex-row gap-2 items-center">

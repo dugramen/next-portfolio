@@ -13,7 +13,7 @@ export default function Home(props) {
   </GitHubDataContext.Provider>
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const query = `
   {
     user(login: "dugramen") {

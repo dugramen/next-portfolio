@@ -1,7 +1,7 @@
 import { title } from "process";
 import React from "react";
 import Project from "./Project/Project";
-import { Page } from "./components";
+import { Page } from "./PageComponent";
 
 export default function Projects(props) {
   const [isMobile, setIsMobile] = React.useState(false);
@@ -22,7 +22,7 @@ export default function Projects(props) {
     <Page className={"ProjectsPage"} id="PortfolioPage">
       <h1 id="PortfolioHeader">Portfolio</h1>
 
-      <div className="projects-container max-w-[1000px]">
+      <div className="flex flex-col items-center gap-8 max-w-[1000px]">
         {props.repos
           ?.filter((r) => r.name !== "next-portfolio")
           // reverse().

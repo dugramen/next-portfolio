@@ -1,10 +1,10 @@
 import { ComponentProps, useState, useEffect } from "react";
 import Image from "next/image";
-import { Page } from "./components";
+import { Page } from "./PageComponent";
 import { FaCode, FaGamepad, FaGraduationCap } from "react-icons/fa";
 
-function Icon({ name, path }) {
-  const [mousePos, setMousePos] = useState([0, 0, null]);
+function RevealIcon({ name, path }: {name: string, path: string}) {
+  const [mousePos, setMousePos] = useState([0, 0, ""]);
   const [clip, setClip] = useState(
     `circle(${name === mousePos[2] ? 150 : 0}% at ${mousePos[0]}px ${
       mousePos[1]
@@ -31,7 +31,7 @@ function Icon({ name, path }) {
       }}
       onMouseLeave={(e) => {
         const { top, left } = e.currentTarget.getBoundingClientRect();
-        setMousePos([e.clientX - left, e.clientY - top, null]);
+        setMousePos([e.clientX - left, e.clientY - top, ""]);
       }}
     >
       <div className="skill-icon transition-transform duration-300 group-hover:-translate-y-3" style={{}}>
@@ -71,6 +71,9 @@ function Icon({ name, path }) {
   );
 }
 
+
+
+
 export default function Skills(props) {
   const skills = [
     "HTML",
@@ -85,22 +88,31 @@ export default function Skills(props) {
     "C++",
     "Python",
     "Godot",
-  ].reduce((accum, val) => {
-    return {
-      ...accum,
-      [val]: "/SkillsIcons/" + val.toLowerCase() + ".svg",
-    };
-  }, {});
+  ]
+  // .reduce((accum, val) => {
+  //   return {
+  //     ...accum,
+  //     [val]: "/SkillsIcons/" + val.toLowerCase() + ".svg",
+  //   };
+  // }, {});
+  const skillIcons = skills.map(skill => `/SkillsIcons/${skill.toLowerCase()}.svg`)
 
   const [mousePos, setMousePos] = useState([0, 0, null]);
   // const {ref, inView} = useInView({threshold: .25});
 
   return (
-    <Page className="SkillPage">
+    <Page className="SkillPage" id="SkillsPage">
       <h1 id="SkillsHeader">Skills</h1>
 
-      <div className="card-container">
-        <div className="info-card">
+      <div
+        className="grid items-end justify-end gap-0"
+        style={{
+          perspective: 10,
+          transformStyle: "preserve-3d",
+          // perspectiveOrigin: "50% -100px",
+        }}
+      >
+        <div className="info-card" style={{"--index": 0} as any}>
           <FaGraduationCap className="min-w-10" />
           <p>
             Hi, I&apos;m Koliur Rahman, a Computer Science graduate from LIU
@@ -108,18 +120,16 @@ export default function Skills(props) {
           </p>
         </div>
 
-        <div className="info-card">
+        <div className="info-card" style={{"--index": 1} as any}>
           <FaCode className="min-w-10" />
           <p>
             {`I've been programming for several years, with a focus on web & game UI. 
                     I build and maintain several projects to constantly improve my front-end skills.
                     `}
-            {/* I&apos;ve been programming for 4-5 years now, and have focused my last year on web development.
-                        While I don&apos;t have proffesional experience yet, I have worked on several personal projects highlighting my capabilities. */}
           </p>
         </div>
 
-        <div className="info-card">
+        <div className="info-card" style={{"--index": 2} as any}>
           <FaGamepad className="min-w-10" />
 
           <p>
@@ -127,23 +137,47 @@ export default function Skills(props) {
                             I'm also an open source contributor to the Godot Game Engine.
                             I build plugins and contribute code to improve the Editor UI and UX.
                         `}
-            {/* I love video games. 
-                        My favorites are platformers and RPGs.
-                        I play a lot of indie games, and do some indie game development myself.<br/> */}
           </p>
         </div>
 
-        <div className="info-card vertical">
+        <div className="info-card vertical" style={{"--index": 3} as any}>
           Here are the languages and frameworks I use
           <div className="skill-container">
-            {Object.keys(skills).map((v) => (
-              <Icon key={v} name={v} path={skills[v]} />
+            {(skills).map((v, i) => (
+              <RevealIcon key={v} name={v} path={skillIcons[i]} />
             ))}
           </div>
         </div>
+
+        {/* {skills.map((skill, index) => (
+          <div 
+            key={index}
+            className="col-start-1 row-start-1 info-card grid place-items-center"
+            style={{
+              translate: `${index * 3}px ${100 - index * 2}px ${index * -4}px`,
+              transformStyle: "preserve-3d",
+            }}
+          >
+            <div>
+              {skill}
+            </div>
+          </div>
+        ))} */}
+
       </div>
+
+      {/* <div className="card-container">
+        
+      </div> */}
     </Page>
-  );
+  )
+  
+  // return (
+    //   <Page className="SkillPage">
+    //     <h1 id="SkillsHeader">Skills</h1>
+  
+    //   </Page>
+  // );
 }
 
 // function InfoCard(p: ComponentProps<'div'>) {

@@ -1,7 +1,7 @@
 import { title } from "process";
 import React from "react";
 import Project from "./Project/Project";
-import { Page } from "./components";
+import { Page } from "./PageComponent";
 
 export default function Projects(props) {
   const [isMobile, setIsMobile] = React.useState(false);

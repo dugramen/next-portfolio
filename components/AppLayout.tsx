@@ -5,7 +5,7 @@ import Projects from "./Pages/Projects";
 import Skills from "./Pages/Skills";
 import { twMerge } from "tailwind-merge";
 // import { useWindowScroll } from "@uidotdev/usehooks";
-import { useScrollBreakpoint } from "./Pages/components";
+import { useScrollBreakpoint } from "./Pages/PageComponent";
 
 export const ScrollBreakpoint = 100;
 
@@ -33,7 +33,7 @@ export function AppLayout({ repos }) {
         )}
         style={{
           background:
-            "radial-gradient(circle farthest-side at center , rgba(0, 0, 0, .3), rgba(0, 0, 0, .5))",
+            "radial-gradient(circle farthest-side at center , rgba(0, 0, 0, .1), rgba(0, 0, 0, .4))",
           // filter: atTop ? "" : "brightness(1.)",
         }}
       >
@@ -55,7 +55,11 @@ export function AppLayout({ repos }) {
         <NavBar pages={pages} scrollContainer={containerRef.current} />
 
         <div
-          className="flex flex-col gap-4 p-0 flex-1 min-w-0 NoScroll sm:ml-96"
+          className={twMerge(
+            "flex flex-col gap-8 p-0 flex-1 min-w-0 NoScroll sm:ml-96",
+            "transition-all duration-500",
+            atTop && "translate-y-[50vh] opacity-0",
+          )}
           ref={containerRef}
           // onScroll={(e) => {
           //   // console.log("scrolling ", e.currentTarget.scrollTop);
@@ -95,9 +99,14 @@ function NavBar({
   const atTop = !useScrollBreakpoint(ScrollBreakpoint);
   return (
     <nav
-      className={`Navbar p-8 fixed top-0 bottom-0 left-0 flex flex-row gap-0 items-start justify-center w-full self-center max-w-[536px]
-        
+      className={`
+        Navbar px-8 py-4 sm:py-8 fixed top-0 sm:bottom-0 left-0 
+        flex flex-row gap-2 sm:gap-0 items-start justify-center self-center max-w-[536px]
         sm:w-auto sm:bg-red-900 sm:flex-col sm:h-full
+        //max-sm:rounded-b-2xl 
+        //max-sm:left-2 
+        //max-sm:right-2
+        max-sm:drop-shadow-xl max-sm:shadow-black/50 max-sm:w-full
         `}
       style={{
         // transform: `translateY(${(1-topLerp) * window.innerHeight}px)`
@@ -111,7 +120,7 @@ function NavBar({
       }}
     >
       <p
-        className="text-4xl px-0 mb-2 text-white/60 text-red-400/ font-black mr-auto translate-y-[2px]"
+        className="text-lg sm:text-4xl max-sm:leading-4 px-0 mb-2 text-white/60 text-red-400/ font-black mr-auto translate-y-[2px]"
         style={
           {
             // textShadow: `0px 0px 1.5px rgb(69 10 10 / var(--tw-text-opacity))`
@@ -184,7 +193,8 @@ function NavBar({
 
       <button
         className={twMerge(
-          "text-red-100 group grid place-items-center relative isolate rounded-xl overflow-clip bg-white/10 border-solid border-0 border-white/10 w-full px-4 py-2 text-base duration-[1s]",
+          "text-red-100 group grid place-items-center relative isolate rounded-xl overflow-clip bg-white/10 border-solid border-0 border-white/10", 
+          "min-w-0 w-full px-2 sm:px-4 py-2 text-base duration-[1s]",
           atTop ? `-translate-x-32 opacity-0` : `opacity-100 transform-none`,
         )}
       >

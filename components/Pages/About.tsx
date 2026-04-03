@@ -1,6 +1,6 @@
 import React, { Children, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { useScrollBreakpoint } from "./components";
+import { useScrollBreakpoint } from "./PageComponent";
 import { ScrollBreakpoint } from "../AppLayout";
 
 export default function About(props) {
@@ -29,8 +29,12 @@ export default function About(props) {
 
   return (
     <div
-      className="AboutPage Page p-0 "
-      style={{ zIndex: 20, transform: "none" }}
+      className="AboutPage Page p-0"
+      style={{
+        zIndex: 20,
+        transform: "none",
+        marginBottom: "-50vh",
+      }}
     >
       {/* <div className={`background bg-gradient`} /> */}
 
@@ -40,7 +44,7 @@ export default function About(props) {
         <div
           className={twMerge(
             "text-wrapper flex flex-col items-center justify-center pointer-events-auto",
-            !atTop && "pointer-events-none"
+            !atTop && "pointer-events-none",
           )}
           // onWheel={(e) => {
           //   console.log(e.deltaY);
@@ -78,7 +82,7 @@ export default function About(props) {
                 key={i}
                 className={twMerge(
                   "animate-[fade-slide-in_.8s_cubic-bezier(.4,2,.7,.8)] text-2xl",
-                  i > 3 && "font-bold text-3xl //text-red-900"
+                  i > 3 && "font-bold text-3xl //text-red-900",
                 )}
                 style={{
                   animationDelay: `${0.6 + i * 0.04}s`,

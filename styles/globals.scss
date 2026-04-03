@@ -201,6 +201,34 @@ body {
   box-sizing: border-box;
 }
 
+div:has(> input[type="text"], > input[type="email"], > textarea) {
+  display: flex;
+  padding: 2px;
+  position: relative;
+  isolation: isolate;
+  &::after {
+    content: "";
+    z-index: -1;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    transition: all 0.3s;
+    border-radius: 10px;
+    background-image: conic-gradient(
+      theme("colors.red.950"),
+      theme("colors.red.500"),
+      theme("colors.red.950")
+    );
+    opacity: 0;
+  }
+  &:focus-within::after {
+    // opacity: 0.5;
+  }
+}
+// div:has(> input[type="text"], > input[type="email"], > textarea):focus-within {
+//   opacity: 1;
+// }
+
 input[type="text"],
 input[type="email"],
 textarea {
@@ -212,7 +240,18 @@ textarea {
   // border: 0px solid black;
   border-radius: 8px;
   padding: 10px 16px;
-  box-shadow: 0px 0px 6px -2px black;
+  box-shadow: inset 2px 2px 6px -2px black;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  // transition: all 0.3s;
+  // &:hover {
+  //   scale: 1.02;
+  // }
+  // &:active {
+  //   scale: 0.98;
+  // }
 }
 
 input:is(:-webkit-autofill, :autofill),
@@ -229,7 +268,7 @@ input:-webkit-autofill:active
 }
 
 textarea {
-  border-bottom-right-radius: 0;
+  // border-bottom-right-radius: 0;
   padding: 16px;
 }
 
@@ -1059,6 +1098,19 @@ button {
       display: flex;
       flex-direction: column;
       @apply ScrollView;
+
+      transition: all 0.3s;
+      &:hover {
+        scale: 1.04;
+      }
+      &:active {
+        scale: 0.99;
+      }
+
+      color: rgb(0, 0, 0, 0.75);
+      &:focus-within {
+        color: rgb(0, 0, 0, 1);
+      }
       // align-items: flex-start;
     }
 

@@ -1,10 +1,10 @@
 import { ComponentProps, useState, useEffect } from "react";
 import Image from "next/image";
-import { Page } from "./components";
+import { Page } from "./PageComponent";
 import { FaCode, FaGamepad, FaGraduationCap } from "react-icons/fa";
 
-function Icon({ name, path }) {
-  const [mousePos, setMousePos] = useState([0, 0, null]);
+function RevealIcon({ name, path }: {name: string, path: string}) {
+  const [mousePos, setMousePos] = useState([0, 0, ""]);
   const [clip, setClip] = useState(
     `circle(${name === mousePos[2] ? 150 : 0}% at ${mousePos[0]}px ${
       mousePos[1]
@@ -31,7 +31,7 @@ function Icon({ name, path }) {
       }}
       onMouseLeave={(e) => {
         const { top, left } = e.currentTarget.getBoundingClientRect();
-        setMousePos([e.clientX - left, e.clientY - top, null]);
+        setMousePos([e.clientX - left, e.clientY - top, ""]);
       }}
     >
       <div className="skill-icon transition-transform duration-300 group-hover:-translate-y-3" style={{}}>
@@ -144,7 +144,7 @@ export default function Skills(props) {
           Here are the languages and frameworks I use
           <div className="skill-container">
             {(skills).map((v, i) => (
-              <Icon key={v} name={v} path={skillIcons[i]} />
+              <RevealIcon key={v} name={v} path={skillIcons[i]} />
             ))}
           </div>
         </div>

@@ -19,7 +19,7 @@ export function GradientButton({
       )}
       onClick={onClick}
     >
-      <span className="z-10 whitespace-nowrap group-hover/btn:-translate-x-2 transition-all duration-300">
+      <span className="z-10 whitespace-nowrap group-hover/btn:-translate-x-2 transition-all duration-300 w-full flex justify-center">
         {text}
       </span>
       <div

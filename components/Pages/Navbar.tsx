@@ -15,22 +15,25 @@ export function NavBar({
 
   return (
     <nav
-      className={`
+      className={twMerge(
+        `
         Navbar px-8 py-4 sm:py-8 fixed top-0 sm:bottom-0 left-0 
-        flex flex-row gap-2 sm:gap-0 items-start justify-center self-center max-w-[536px]
-        sm:w-auto sm:bg-red-900 sm:flex-col sm:h-full
-        //max-sm:rounded-b-2xl 
-        //max-sm:left-2 
-        //max-sm:right-2
+        flex flex-row gap-2 sm:gap-0 items-start justify-center self-center sm:max-w-[536px]
+        sm:w-auto =sm:bg-red-900 sm:flex-col sm:h-full
+        sm:bg-[radial-gradient(circle_farthest-side_at_center,_rgba(0,0,0,.3),rgba(0,0,0,.8))]
+        max-sm:bg-red-950 sm:bg-[red]
         max-sm:drop-shadow-xl max-sm:shadow-black/50 max-sm:w-full
-        `}
+        isolate z-30
+        `,
+        atTop && "opacity-0 sm:-translate-x-full max-sm:-translate-y-full",
+      )}
       style={{
         // transform: `translateY(${(1-topLerp) * window.innerHeight}px)`
         zIndex: 100,
         justifyContent: "center",
-        backgroundColor: "red",
-        backgroundImage:
-          "radial-gradient(circle farthest-side at center , rgba(0, 0, 0, .3), rgba(0, 0, 0, .75))",
+        // backgroundColor: "red",
+        // backgroundImage:
+        // "radial-gradient(circle farthest-side at center , rgba(0, 0, 0, .3), rgba(0, 0, 0, .75))",
         backgroundAttachment: "fixed",
         backgroundSize: "100vw 100%",
       }}
@@ -50,14 +53,14 @@ export function NavBar({
 
       <div
         className={twMerge(
-          `items-center absolute top-full -translate-y-3 origin-top-right`,
-          "flex flex-col",
-          `bg-red-950/ rounded-lg `,
+          `items-center absolute top-full right-0 -translate-y-3 origin-top`,
+          "flex flex-col py-2 px-4",
+          `max-sm:bg-red-950 rounded-lg `,
           // "animate-[panel-out_.5s_forwards_cubic-bezier(.3,2.0,.7,.7)]",
-          "animate-[panel-out_.15s_forwards_ease-out]",
-          open &&
+          "transition-all duration-500 -z-30",
+          !open &&
             `
-            animate-[panel-in_.5s_forwards_cubic-bezier(.3,2.0,.6,.8)]
+            max-sm:translate-x-full max-sm:opacity-0
           `,
           "sm:relative sm:flex sm:flex-col sm:top-auto self-stretch sm:translate-y-0 sm:rounded-2xl sm:px-2 sm:scale-100 sm:animate-none",
         )}
@@ -74,9 +77,13 @@ export function NavBar({
               atTop
                 ? `-translate-x-32 opacity-0`
                 : `opacity-100 transform-none`,
+              open 
+                ? `translate-x-0`
+                : `max-sm:translate-y-8 max-sm:translate-x-full max-sm:opacity-0`,
+              
             )}
             style={{
-              transitionDuration: atTop ? undefined : `${index * 0.2 + 0.4}s`,
+              transitionDuration: open ? `${index * 0.15 + 0.4}s` : atTop ? undefined : `${index * 0.2 + 0.4}s`,
             }}
             key={item}
             onClick={() => {
@@ -91,7 +98,7 @@ export function NavBar({
               }
             }}
           >
-            <div className="transition-all duration-300 text-base group-hover:text-3xl relative pointer-events-none">
+            <div className="transition-all duration-300 text-base sm:group-hover:text-3xl relative pointer-events-none">
               <span className="absolute bottom-0 left-full right-0 h-[2px] rounded-full bg-red-100 pointer-events-none group-hover:left-0 transition-all origin-center scale-x-90 duration-300" />
               {item}
             </div>
@@ -108,8 +115,8 @@ export function NavBar({
         <button
           className={twMerge(
             "text-red-100 group grid place-items-center relative isolate rounded-xl overflow-clip bg-white/10 border-solid border-0 border-white/10",
-            "min-w-0 w-full px-2 sm:px-4 py-2 text-base duration-[1s]",
-            atTop ? `-translate-x-32 opacity-0` : `opacity-100 transform-none`,
+            "min-w-0 w-full px-2 sm:px-4 py-2 text-base max-sm:duration-300 sm:duration-[1s]",
+            atTop ? `-translate-x-32 max-sm:translate-x-8 max-sm:translate-y-4 opacity-0` : `opacity-100 transform-none`,
           )}
         >
           <div

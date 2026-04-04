@@ -15,12 +15,11 @@ export default function Project(props) {
   }, []);
 
   return (
-    <div className=" ScrollView group flex flex-col items-center gap-0 sm:flex-row transition-all">
+    <div className=" ScrollView group flex flex-col items-center gap-0 sm:flex-row transition-all px-2">
       <a
         className="img-container 
-        min-w-[352px] max-w-[352px]
-        sm:min-w-80 sm:max-w-80
-        xl:min-w-96 xl:max-w-96 
+        /min-w-[352px] max-w-[352px]
+       
         overflow-clip shadow-lg 
         shadow-black/50 flex items-center justify-center
           transition-all duration-300 ease-out
@@ -37,7 +36,7 @@ export default function Project(props) {
         />
       </a>
 
-      <div className="flex flex-col gap-1 min-w-96 max-w-96 flex-1 p-8">
+      <div className="flex flex-col gap-1 min-w-96 max-w-96 flex-1 py-8 pl-8 pr-6">
         <a
           className="flex flex-col gap-2"
           href={!props.isMobile ? repo.homepageUrl : undefined}
@@ -55,12 +54,12 @@ export default function Project(props) {
           <p className="text-sm font-medium opacity-90 mb-0">{props.description}</p>
         </a>
 
-        <div className="mt-auto flex flex-row gap-2 items-center">
-          <div className="flex flex-row gap-1 flex-wrap">
+        <div className="mt-auto flex max-sm:flex-col gap-0 sm:items-center max-sm:items-stretch w-full">
+          <div className="flex flex-row gap-1 flex-wrap max-sm:py-2">
             {repo.languages.nodes.map((lang) => (
               <div
                 key={lang.name}
-                className="font-bold text-xs rounded-md py-1 px-3 bg-black/50 text-white"
+                className="font-bold text-xs rounded-md py-1 px-3 flex items-center bg-black/50 text-white/90"
                 //   style={{color: lang.color}}
               >
                 {lang.name}
@@ -68,25 +67,25 @@ export default function Project(props) {
             ))}
           </div>
           
-          <div className="flex-1 flex flex-col gap-1 items-center">
+          <div className="flex-1 flex flex-row gap-2 items-end max-sm:justify-stretch">
             <a
-              className="github sm:ml-auto"
+              className="github sm:ml-auto max-sm:flex-1"
               href={repo.url}
               target="_blank"
               rel="noreferrer"
             >
-              <GradientButton text="GitHub" />
+              <GradientButton text="GitHub" className="max-sm:w-full"/>
               {/* <button className="gradient-button py-1">GitHub</button> */}
             </a>
 
             {props.isMobile && (
               <a
-                className="website-link"
+                className="website-link max-sm:flex-1"
                 href={repo.homepageUrl}
                 target="_blank"
                 rel="noreferrer"
               >
-                <GradientButton text="Try Out" />
+                <GradientButton text="Try Out" className="max-sm:w-full"/>
                 {/* <button className="gradient-button py-1">Try out</button> */}
               </a>
             )}
